@@ -1,0 +1,218 @@
+.qloo-evidence {
+  min-width: 0;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  color: var(--foreground);
+}
+.qloo-evidence-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qloo-evidence-mark {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: var(--surface-muted);
+  color: var(--primary);
+}
+.qloo-evidence-heading > div {
+  min-width: 0;
+}
+.qloo-evidence-kicker {
+  margin: 0 0 5px;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1.2px;
+}
+.qloo-evidence h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.qloo-evidence-city {
+  margin-left: auto;
+  max-width: 32%;
+  font-size: 11px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+.qloo-evidence-count {
+  margin: 14px 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.qloo-evidence summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 36px;
+}
+.qloo-evidence summary::-webkit-details-marker {
+  display: none;
+}
+.qloo-evidence summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+.qloo-evidence details[open] > summary > svg {
+  transform: rotate(180deg);
+}
+.qloo-evidence-favorites {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.qloo-evidence-favorites strong {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+}
+.qloo-evidence-favorites ul {
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+.qloo-evidence-favorites li {
+  padding: 5px 9px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+.qloo-evidence-favorites p,
+.qloo-evidence-other,
+.qloo-evidence-footer p,
+.qloo-evidence-empty {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+.qloo-evidence-visits {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.qloo-evidence-visits > li {
+  border-bottom: 1px solid var(--border);
+  padding: 13px 0;
+}
+.qloo-evidence-visit {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12px;
+}
+.qloo-evidence-time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.qloo-evidence-visit > strong,
+.qloo-evidence-visit > button {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+  font-weight: 500;
+}
+.qloo-evidence-visit > button {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 7px;
+  border: 0;
+  padding: 5px 0;
+  background: transparent;
+  text-align: left;
+}
+.qloo-evidence-visit > button:hover {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.qloo-evidence-state {
+  flex-shrink: 0;
+  font-size: 9px;
+  color: var(--primary);
+}
+.qloo-evidence-rank {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+.qloo-evidence-source,
+.qloo-evidence-missing {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+.qloo-evidence-source summary {
+  justify-content: flex-start;
+}
+.qloo-evidence-source dl {
+  margin: 0 0 7px;
+}
+.qloo-evidence-source dl > div {
+  display: grid;
+  grid-template-columns: 95px minmax(0, 1fr);
+  gap: 12px;
+  padding: 3px 0;
+}
+.qloo-evidence-source dd {
+  margin: 0;
+  color: var(--foreground);
+}
+.qloo-evidence code {
+  overflow-wrap: anywhere;
+  font-size: 10px;
+}
+.qloo-evidence-ideas {
+  margin-top: 10px;
+  font-size: 11px;
+}
+.qloo-evidence-ideas ul {
+  margin: 5px 0;
+  padding: 0;
+  list-style: none;
+}
+.qloo-evidence-ideas li {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.7;
+}
+.qloo-evidence-ideas li > strong,
+.qloo-evidence-ideas li > span,
+.qloo-evidence-ideas li > small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.qloo-evidence-ideas li > span,
+.qloo-evidence-ideas li > small {
+  color: var(--muted);
+}
+.qloo-evidence-footer {
+  margin-top: 12px;
+}
+.qloo-evidence .button {
+  min-height: 38px;
+  padding: 7px 0;
+  font-size: 11px;
+  gap: 8px;
+  white-space: normal;
+  text-align: left;
+}
+@media (max-width: 480px) {
+  .qloo-evidence-state {
+    display: none;
+  }
+  .qloo-evidence-visit {
+    gap: 8px;
+  }
+}

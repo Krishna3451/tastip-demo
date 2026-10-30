@@ -1,0 +1,92 @@
+.trip-details-panel {
+  padding: 28px;
+  max-width: 920px;
+}
+.trip-details-panel h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  margin: 12px 0;
+}
+.trip-details-panel header > p:last-child,
+.trip-details-help {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 14px 0;
+}
+.trip-details-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+.trip-details-fields label {
+  display: grid;
+  gap: 10px;
+  font-size: 13px;
+  min-width: 0;
+}
+.trip-details-fields input,
+.trip-details-fields select {
+  min-width: 0;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--foreground);
+  background: var(--surface);
+}
+.trip-details-cost-preview {
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.trip-details-cost-preview h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.trip-details-cost-preview p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 10px 0;
+}
+.trip-details-cost-preview ul {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+}
+.trip-details-cost-preview li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+.trip-details-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.trip-details-saved {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--primary);
+}
+@media (max-width: 620px) {
+  .trip-details-panel {
+    padding: 24px 16px;
+  }
+  .trip-details-panel h2 {
+    font-size: 30px;
+  }
+  .trip-details-fields {
+    grid-template-columns: 1fr;
+  }
+}

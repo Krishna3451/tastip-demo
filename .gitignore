@@ -1,0 +1,25 @@
+node_modules/
+.next/
+.next-e2e/
+.next-preview/
+.turbo/
+dist/
+coverage/
+test-results/
+playwright-report/
+.playwright-cli/
+.env*
+!.env.example
+!**/.env.example
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+*.log
+tmp/
+.vercel/
+
+# Private local server accounts, sessions, trip snapshots and share tokens
+apps/web/.data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

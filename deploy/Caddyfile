@@ -1,0 +1,30 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+	servers {
+		timeouts {
+			read_header 10s
+			read_body 30s
+			idle 2m
+		}
+	}
+}
+
+# HTTP inside the private host. The outer Coder/HTTPS proxy owns TLS and its URL.
+:8080 {
+	request_body {
+		max_size 5242880
+	}
+	# No file_server, access-log or database mount; only proxy the Next app.
+	reverse_proxy web:3000 {
+		# Negative intervals suppress upstream cancellation after client disconnects.
+		# A positive interval keeps abort propagation and bounds buffered stream delay.
+		flush_interval 10ms
+		header_up X-Forwarded-Proto {$TASTIP_FORWARDED_PROTO:http}
+		transport http {
+			dial_timeout 5s
+			keepalive 30s
+		}
+	}
+}

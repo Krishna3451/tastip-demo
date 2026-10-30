@@ -1,0 +1,15 @@
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .island-stop:hover .island-art {
+    transform: none;
+  }
+  button:active:not(:disabled) {
+    transform: none;
+  }
+}

@@ -1,0 +1,29 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+	servers {
+		timeouts {
+			read_header 10s
+			read_body 30s
+			idle 2m
+		}
+	}
+}
+
+:8080 {
+	@wrongHost not host {$TASTIP_PUBLIC_HOST}
+	respond @wrongHost 421
+	request_body {
+		max_size 5242880
+	}
+	reverse_proxy web:3000 {
+		flush_interval 10ms
+		# HTTPS is fixed by this deployment, never inferred from a viewer header.
+		header_up X-Forwarded-Proto https
+		transport http {
+			dial_timeout 5s
+			keepalive 30s
+		}
+	}
+}

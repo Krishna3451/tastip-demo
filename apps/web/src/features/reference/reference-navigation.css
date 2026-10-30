@@ -1,0 +1,469 @@
+.mt-sidebar > nav :is(a, button) {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 46px;
+  padding: 0 12px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  width: 100%;
+}
+.mt-sidebar > nav :is(a, button):hover,
+.mt-sidebar > nav :is(a, button).selected {
+  background: #202020;
+}
+.mt-nav-count {
+  margin-left: auto;
+  color: #a0a0a0;
+  font-size: 12px;
+}
+.mt-sidebar.collapsed {
+  width: 56px;
+  padding-inline: 8px;
+}
+.mt-app:has(.mt-sidebar.collapsed) {
+  --mt-rail: 56px;
+}
+.mt-sidebar.collapsed > nav :is(a, button) {
+  width: 40px;
+  height: 46px;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
+}
+.mt-sidebar.collapsed > nav :is(a, button) :is(span, small) {
+  display: none;
+}
+.mt-sidebar.collapsed .mt-sidebar-brand {
+  height: 51px;
+}
+.mt-sidebar.collapsed .mt-brand .mt-assistant-mark {
+  background: transparent;
+  color: white;
+  width: 30px;
+}
+.mt-sidebar.collapsed .mt-collapse {
+  right: -12px;
+  top: 44px;
+  opacity: 0;
+}
+.mt-sidebar.collapsed:hover .mt-collapse,
+.mt-sidebar.collapsed .mt-collapse:focus-visible {
+  opacity: 1;
+}
+.mt-sidebar.collapsed .mt-new-chat {
+  display: none;
+}
+.mt-new-chat {
+  width: 100%;
+  border: 0;
+  color: inherit;
+}
+.mt-sidebar.collapsed .mt-profile {
+  padding: 0;
+}
+.mt-company-trigger {
+  margin: 36px auto 0;
+  display: flex;
+}
+.mt-navigation-panel {
+  position: fixed;
+  inset: 0 auto 0 56px;
+  width: 382px;
+  max-width: calc(100vw - 56px);
+  background: #191919;
+  z-index: 45;
+  border-radius: 0 18px 18px 0;
+  box-shadow: 8px 0 25px #0003;
+  padding: 12px 20px;
+  overflow-y: auto;
+}
+.mt-panel-close {
+  position: absolute;
+  top: 7px;
+  right: 6px;
+  display: none;
+}
+.mt-nav-search {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  background: #222;
+  border-radius: 30px;
+  color: #aaa;
+  margin: 0 8px;
+}
+.mt-nav-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  color: #f1f1f1;
+  font-size: 14px;
+}
+.mt-chat-shortcuts {
+  display: grid;
+  margin-top: 24px;
+}
+.mt-chat-shortcuts :is(a, button) {
+  border: 0;
+  background: transparent;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+.mt-chat-shortcuts :is(a, button):hover {
+  background: #242424;
+}
+.mt-chat-list-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 8px 10px;
+}
+.mt-chat-list-heading h3 {
+  color: #808080;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+}
+.mt-text-action {
+  color: #999;
+  font-size: 11px;
+  background: none;
+  border: 0;
+}
+.mt-drawer-chat {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+.mt-drawer-chat:hover,
+.mt-drawer-chat.selected {
+  background: #222;
+}
+.mt-drawer-chat > a {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+}
+.mt-drawer-chat strong {
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.mt-drawer-chat small {
+  display: block;
+  font-size: 12px;
+  color: #858585;
+  margin-top: 2px;
+}
+.mt-drawer-chat > .mt-icon {
+  opacity: 0;
+  flex: none;
+}
+.mt-drawer-chat:hover > .mt-icon,
+.mt-drawer-chat:focus-within > .mt-icon {
+  opacity: 1;
+}
+.mt-chat-no-results {
+  font-size: 13px;
+  margin: 18px 8px;
+}
+.mt-account-menu,
+.mt-chat-options,
+.mt-update-options {
+  background: #242424;
+  border: 1px solid #393939;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px #0008;
+  padding: 5px;
+  z-index: 55;
+}
+.mt-account-menu {
+  position: absolute;
+  bottom: 106px;
+  left: 8px;
+  width: 258px;
+}
+.mt-account-menu :is(a, button),
+.mt-chat-options :is(a, button),
+.mt-update-options :is(a, button) {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 9px 12px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  border-radius: 7px;
+  color: #eee;
+  text-align: left;
+  font-size: 14px;
+}
+.mt-account-menu :is(a, button):hover,
+.mt-chat-options button:hover,
+.mt-update-options :is(a, button):hover {
+  background: #333;
+}
+.mt-account-menu hr {
+  border: 0;
+  border-top: 1px solid #414141;
+  margin: 4px 6px;
+}
+.mt-profile-menu-heading strong {
+  font-weight: 500;
+  display: block;
+}
+.mt-profile-menu-heading small {
+  font-size: 12px;
+  color: #999;
+}
+.mt-sidebar.collapsed .mt-account-menu {
+  left: 49px;
+  bottom: 63px;
+}
+.mt-sidebar.collapsed .mt-company-menu {
+  bottom: 15px;
+}
+.mt-chat-options {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  min-width: 160px;
+}
+.mt-updates-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 8px 28px;
+}
+.mt-updates-heading h2 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 auto 0 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.mt-updates-heading h2 small {
+  font-size: 11px;
+  color: #999;
+}
+.mt-updates-heading .mt-unread-control {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.mt-updates-heading .mt-toggle {
+  transform: scale(0.68);
+  transform-origin: center;
+  margin-inline: -5px;
+}
+.mt-updates-heading .mt-icon {
+  width: 26px;
+  height: 26px;
+}
+.mt-navigation-panel .mt-tabs {
+  margin: 0 8px;
+  border-bottom: 1px solid #303030;
+  gap: 24px;
+}
+.mt-navigation-panel .mt-tabs button {
+  font-size: 14px;
+  padding: 0 0 10px;
+}
+.mt-updates-empty {
+  text-align: center;
+  padding: 75px 9px 0;
+}
+.mt-updates-empty h2 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  margin: 25px 0 8px;
+}
+.mt-updates-empty p {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 0 30px;
+}
+.mt-updates-empty > .mt-primary {
+  height: 56px;
+  min-width: 153px;
+  border-radius: 35px;
+  font-size: 16px;
+}
+.mt-updates-art {
+  position: relative;
+  display: block;
+  height: 117px;
+  width: 125px;
+  margin: auto;
+}
+.mt-updates-art svg {
+  position: absolute;
+  top: 0;
+  left: 36px;
+  fill: #ffc62b;
+  color: #e2a719;
+  transform: rotate(16deg);
+}
+.mt-updates-art i {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  width: 100px;
+  height: 28px;
+  background: #f0f0f0;
+  border-radius: 7px;
+  transform: rotate(5deg);
+  box-shadow: 0 4px 5px #0001;
+}
+.mt-updates-art i::after {
+  content: "";
+  display: block;
+  height: 7px;
+  width: 60px;
+  background: #ddd;
+  border-radius: 8px;
+  margin: 10px;
+}
+.mt-updates-art i:last-child {
+  top: 80px;
+  left: 16px;
+  transform: rotate(-8deg);
+}
+.mt-update-options {
+  position: absolute;
+  top: 47px;
+  right: 20px;
+}
+@media (max-height: 750px) and (min-width: 761px) {
+  .mt-sidebar > nav :is(a, button) {
+    height: 43px;
+  }
+  .mt-sidebar.collapsed > nav :is(a, button) {
+    height: 46px;
+  }
+  .mt-sidebar-bottom {
+    padding-top: 8px;
+  }
+}
+@media (max-width: 760px) {
+  .mt-sidebar.mobile-open {
+    width: 208px;
+  }
+  .mt-sidebar.mobile-open > nav :is(a, button) {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 16px;
+    height: 40px;
+    padding: 0 12px;
+  }
+  .mt-sidebar.mobile-open > nav :is(a, button) span,
+  .mt-sidebar.mobile-open .mt-profile > span,
+  .mt-sidebar.mobile-open .mt-brand > span {
+    display: initial;
+  }
+  .mt-sidebar.mobile-open .mt-profile {
+    justify-content: flex-start;
+  }
+  .mt-sidebar.mobile-open .mt-new-chat {
+    display: flex;
+  }
+  .mt-sidebar.mobile-open .mt-legal {
+    display: block;
+  }
+  .mt-sidebar.mobile-open .mt-company-trigger {
+    display: none;
+  }
+  .mt-account-menu,
+  .mt-sidebar.collapsed .mt-account-menu {
+    left: 8px;
+    bottom: 90px;
+    width: 260px;
+  }
+  .mt-navigation-panel {
+    inset: 58px 0 66px 0;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    z-index: 46;
+    padding-top: 18px;
+  }
+  .mt-panel-close {
+    display: flex;
+    top: 19px;
+    right: 14px;
+  }
+  .mt-nav-search {
+    margin-right: 40px;
+  }
+  .mt-updates-heading {
+    margin-right: 35px;
+  }
+  .mt-bottom-nav > button {
+    border: 0;
+    background: transparent;
+    color: #888;
+    display: grid;
+    gap: 4px;
+    justify-items: center;
+    align-content: center;
+    font-size: 10px;
+  }
+  .mt-bottom-nav > button.selected {
+    color: #fff;
+  }
+  .mt-drawer-chat > .mt-icon {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mt-sidebar {
+    transition: none;
+  }
+}
+
+/* Use the shared native dialog boundary for the mobile sidebar only. */
+.mt-mobile-navigation-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: hidden;
+}
+.mt-mobile-navigation-dialog > .mt-dialog-close {
+  display: none;
+}
+.mt-mobile-navigation-dialog::backdrop {
+  background: transparent;
+  backdrop-filter: none;
+}

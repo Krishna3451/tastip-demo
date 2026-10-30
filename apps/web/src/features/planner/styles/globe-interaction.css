@@ -1,0 +1,106 @@
+.premium-globe .globe-surface {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+}
+.premium-globe .globe-surface:active {
+  cursor: grabbing;
+}
+.premium-globe canvas {
+  /* OrbitControls writes an inline touch action. Keep vertical page scrolling. */
+  touch-action: pan-y !important;
+}
+.globe-controls {
+  position: absolute;
+  top: 46px;
+  right: calc(5.5% + 18px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid #bfd0bc40;
+  border-radius: 11px;
+  background: #102f33d9;
+  color: #e7e8da;
+  box-shadow: 0 4px 18px #061c2426;
+}
+.globe-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 36px;
+  min-height: 38px;
+  padding: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font-size: 17px;
+  line-height: 1;
+}
+.globe-controls button:hover {
+  background: #d3dec01a;
+}
+.globe-controls button:active {
+  background: #d3dec02b;
+}
+.globe-controls button:focus-visible {
+  outline: 2px solid #f1d2a3;
+  outline-offset: 2px;
+}
+.globe-controls .globe-refocus {
+  font-size: 11px;
+  font-weight: 550;
+}
+.globe-refocus svg {
+  stroke: currentColor;
+  stroke-width: 1.3;
+}
+.globe-control-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.premium-globe .geographic-fallback {
+  inset: 14% 12% 20%;
+  display: block;
+  cursor: default;
+}
+.premium-globe .geographic-fallback canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 25px #031b2b40);
+}
+.geographic-fallback small {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(280px, 100%);
+  max-width: none;
+  font-size: 10px;
+  color: #cad6cb;
+  text-wrap: balance;
+}
+@media (max-width: 620px) {
+  .globe-controls {
+    top: 12px;
+    right: calc(5.5% + 14px);
+  }
+  .globe-controls button {
+    min-height: 38px;
+  }
+  .geographic-fallback small {
+    width: 230px;
+  }
+}

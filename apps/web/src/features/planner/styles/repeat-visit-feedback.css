@@ -1,0 +1,22 @@
+.repeat-visit-stale {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px;
+  background: var(--surface-muted);
+  border-radius: 10px;
+}
+.repeat-visit-stale p {
+  margin: 0;
+}
+.repeat-visit-stale .button {
+  min-height: 44px;
+  white-space: normal;
+}
+.repeat-visit .inline-error {
+  color: var(--error);
+}
+.repeat-visit .inline-error:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}

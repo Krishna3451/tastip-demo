@@ -1,0 +1,25 @@
+.calendar-day-card {
+  min-width: 0;
+}
+.calendar-day-card strong,
+.calendar-day-card small,
+.calendar-day-title > span {
+  overflow-wrap: anywhere;
+}
+.calendar-day-card li > button {
+  min-width: 0;
+}
+.calendar-day-card li > button > span,
+.calendar-day-card li small {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.calendar-day-card li strong {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.calendar-open-timeline {
+  margin: 8px 18px 18px;
+  justify-content: space-between;
+  font-size: 12px;
+}

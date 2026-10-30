@@ -1,0 +1,395 @@
+.mt-settings-layout {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 708px);
+  gap: 48px;
+  padding: 48px 40px 100px;
+}
+.mt-settings-layout > nav {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding-top: 3px;
+}
+.mt-settings-layout > nav a {
+  font-size: 14px;
+  padding: 11px 16px;
+  border-radius: 8px;
+  color: #aaa;
+}
+.mt-settings-layout > nav a:hover,
+.mt-settings-layout > nav a[aria-current] {
+  color: white;
+  background: #232323;
+}
+.mt-settings-content {
+  min-width: 0;
+}
+.mt-settings-content h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 30px;
+  letter-spacing: -0.4px;
+}
+.mt-settings-content h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.mt-settings-content p {
+  font-size: 14px;
+  line-height: 22px;
+  color: #aaa;
+  margin: 0 0 20px;
+}
+.mt-settings-content hr {
+  border: 0;
+  border-top: 1px solid #303030;
+  margin: 28px 0;
+}
+.mt-setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+}
+.mt-setting-row > div {
+  font-size: 14px;
+  line-height: 21px;
+}
+.mt-setting-row strong {
+  display: block;
+  font-weight: 500;
+  color: #eee;
+  margin-bottom: 3px;
+}
+.mt-setting-row > div > div {
+  color: #aaa;
+}
+.mt-setting-change {
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+  color: #eee;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.mt-settings-email {
+  display: flex;
+  gap: 12px;
+}
+.mt-settings-email input,
+.mt-setting-dialog input,
+.mt-setting-dialog select {
+  background: #1b1b1b;
+  border: 1px solid #404040;
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: white;
+  min-width: 0;
+}
+.mt-settings-email input {
+  flex: 1;
+}
+.mt-settings-caption {
+  color: #888 !important;
+  font-size: 12px !important;
+  line-height: 19px !important;
+  margin-top: 10px !important;
+}
+.mt-settings-voices {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.mt-settings-voices legend {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.mt-settings-voices > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.mt-settings-voices label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 12px;
+  border: 1px solid #383838;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.mt-settings-voices label.selected {
+  border-color: #eee;
+  background: #232323;
+}
+.mt-settings-voices input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.mt-settings-voices label:focus-within {
+  outline: 2px solid #b9b3fe;
+  outline-offset: 3px;
+}
+.mt-settings-voices strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.mt-voice-color {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  flex: none;
+  background: radial-gradient(circle at 25% 25%, #96d1d7, #627783);
+}
+.mt-voice-color.shimmer {
+  background: radial-gradient(circle at 25% 25%, #c6a2dc, #927ea8);
+}
+.mt-voice-color.echo {
+  background: radial-gradient(circle at 25% 25%, #f0bb8c, #a58c72);
+}
+.mt-voice-color.cedar {
+  background: radial-gradient(circle at 25% 25%, #b1c7a8, #6d806b);
+}
+.mt-settings-select {
+  background: #242424;
+  border: 1px solid #3b3b3b;
+  color: white;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.mt-setting-toggle-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  justify-content: space-between;
+}
+.mt-setting-toggle-row > div {
+  flex: 1;
+}
+.mt-setting-toggle-row > .mt-toggle {
+  flex: none;
+  margin-top: 4px;
+}
+.mt-memory-group {
+  margin-top: 28px;
+}
+.mt-memory-group a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #303030;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.mt-memory-group a svg {
+  margin-left: auto;
+  flex: none;
+  color: #999;
+}
+.mt-notification-group {
+  padding: 28px 0;
+  border-bottom: 1px solid #303030;
+}
+.mt-notification-group > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  background: transparent;
+  border: 0;
+  color: #ddd;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+}
+.mt-notification-group > button small {
+  margin-left: auto;
+  color: #999;
+  white-space: nowrap;
+}
+.mt-notification-group > button svg {
+  color: #777;
+  flex: none;
+}
+.mt-notification-group > button:hover {
+  color: white;
+}
+.mt-connected-account {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+.mt-connected-account > svg {
+  flex: none;
+  margin-top: 3px;
+}
+.mt-connected-account > div {
+  flex: 1;
+}
+.mt-connected-account .mt-pill {
+  flex: none;
+}
+.mt-setting-dialog {
+  width: 440px;
+  padding: 48px 30px 30px;
+}
+.mt-setting-dialog h2 {
+  font-size: 20px;
+  line-height: 27px;
+  margin: 0 0 20px;
+}
+.mt-setting-dialog p {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 22px;
+}
+.mt-setting-dialog label {
+  display: grid;
+  gap: 10px;
+  font-size: 14px;
+}
+.mt-setting-dialog small {
+  color: #999;
+}
+.mt-setting-dialog select {
+  width: 100%;
+}
+.mt-setting-dialog .mt-primary {
+  display: flex;
+  margin: 30px auto 0;
+  min-width: 140px;
+}
+.mt-setting-dialog .mt-setting-toggle-row {
+  padding: 15px 0;
+  align-items: center;
+}
+.mt-profile-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 32px 40px;
+}
+.mt-profile-cover {
+  height: 240px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #234047, #75857b 55%, #3a4850);
+}
+.mt-profile-details {
+  padding: 0 24px;
+  position: relative;
+}
+.mt-profile-large-avatar {
+  width: 100px;
+  height: 100px;
+  background: #9d80ce;
+  border: 5px solid #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  margin-top: -50px;
+  position: relative;
+}
+.mt-profile-details > .mt-pill {
+  position: absolute;
+  top: 70px;
+  right: 24px;
+}
+.mt-profile-details h1 {
+  font-size: 30px;
+  margin: 18px 0 4px;
+}
+.mt-profile-details p {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mt-profile-stats {
+  margin: 24px 0;
+  gap: 28px !important;
+}
+.mt-profile-details .mt-tabs {
+  border-bottom: 1px solid #333;
+  gap: 30px;
+}
+.mt-profile-details .mt-tabs a {
+  padding: 14px 0;
+}
+@media (max-width: 1100px) {
+  .mt-settings-layout {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 24px;
+    padding-inline: 24px;
+  }
+  .mt-settings-voices > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .mt-settings-layout {
+    display: block;
+    padding: 24px 20px 90px;
+  }
+  .mt-settings-layout > nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding-bottom: 8px;
+  }
+  .mt-settings-layout > nav a {
+    white-space: nowrap;
+    padding: 9px 12px;
+  }
+  .mt-setting-row {
+    gap: 12px;
+  }
+  .mt-settings-content h1 {
+    font-size: 23px;
+  }
+  .mt-connected-account {
+    flex-wrap: wrap;
+  }
+  .mt-notification-group > button {
+    align-items: flex-start;
+  }
+  .mt-notification-group > button small {
+    font-size: 10px;
+  }
+  .mt-profile-page {
+    padding: 16px;
+  }
+  .mt-profile-cover {
+    height: 160px;
+  }
+  .mt-profile-details {
+    padding: 0 8px;
+  }
+  .mt-profile-large-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+    margin-top: -40px;
+  }
+  .mt-profile-details > .mt-pill {
+    top: 54px;
+    right: 0;
+  }
+  .mt-profile-details h1 {
+    font-size: 26px;
+  }
+}

@@ -1,0 +1,31 @@
+services:
+  web:
+    # Unlike unless-stopped, on-failure does not start after a daemon reboot.
+    # systemd must verify/remount the exact data disk and refresh keys first.
+    restart: "on-failure:3"
+  proxy:
+    restart: "on-failure:3"
+    # Override the local-only binding; this address is the EC2 private interface.
+    # EC2 has no public IP and its dedicated SG admits only CloudFront on this port.
+    ports: !override
+      - target: 8080
+        published: "8080"
+        host_ip: ${TASTIP_PRIVATE_IP:?Set the actual private IPv4 from stack outputs}
+        protocol: tcp
+    environment:
+      TASTIP_FORWARDED_PROTO: https
+      TASTIP_PUBLIC_HOST: ${TASTIP_PUBLIC_HOST:?Set the distribution hostname}
+    volumes:
+      - ./aws/Caddyfile:/etc/caddy/Caddyfile:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "-q",
+          "--header",
+          "Host: ${TASTIP_PUBLIC_HOST}",
+          "-O",
+          "/dev/null",
+          "http://127.0.0.1:8080/api/health",
+        ]

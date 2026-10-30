@@ -1,0 +1,55 @@
+.day-lodging {
+  display: flex;
+  gap: 14px;
+  margin: 24px 0 24px 88px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-muted);
+}
+.day-lodging > svg {
+  margin-top: 4px;
+  color: var(--muted);
+}
+.day-lodging-copy {
+  min-width: 0;
+}
+.day-lodging h4 {
+  margin: 10px 0;
+  font:
+    25px / 1.25 var(--font-editorial),
+    Georgia,
+    serif;
+  overflow-wrap: anywhere;
+}
+.day-lodging p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.day-lodging .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  display: block;
+}
+.day-lodging-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.day-lodging-actions .button {
+  white-space: normal;
+  font-size: 12px;
+}
+@media (max-width: 1000px) {
+  .day-lodging {
+    margin-left: 63px;
+  }
+}
+@media (max-width: 620px) {
+  .day-lodging {
+    margin-left: 0;
+    padding: 18px;
+  }
+}

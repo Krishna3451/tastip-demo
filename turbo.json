@@ -1,0 +1,22 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": [
+    "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH",
+    "CI",
+    "TURBO_TELEMETRY_DISABLED",
+    "NEXT_TELEMETRY_DISABLED"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"],
+      "env": ["OPENAI_API_KEY", "OPENAI_CHAT_MODEL", "OPENAI_REALTIME_MODEL", "QLOO_API_KEY"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["OPENAI_API_KEY", "OPENAI_CHAT_MODEL", "OPENAI_REALTIME_MODEL", "QLOO_API_KEY"]
+    },
+    "typecheck": { "dependsOn": ["^typecheck"], "outputs": [] }
+  }
+}

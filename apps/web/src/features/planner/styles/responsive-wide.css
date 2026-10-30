@@ -1,0 +1,296 @@
+@media (min-width: 1600px) {
+  .entry-layout {
+    min-height: 790px;
+  }
+  .entry-content {
+    padding-top: 88px;
+  }
+  .trip-brief {
+    margin-top: 40px;
+  }
+  .world-stage-heading {
+    top: 55px;
+  }
+  .entry-description {
+    font-size: 16px;
+  }
+  .planning-workspace.with-detail {
+    grid-template-columns: 310px minmax(0, 1fr) 340px;
+  }
+}
+@media (max-width: 1200px) {
+  .topbar {
+    height: 76px;
+  }
+  .entry-content {
+    padding-top: 50px;
+    padding-left: 9%;
+    padding-right: 7%;
+  }
+  .entry-layout {
+    min-height: 685px;
+    grid-template-columns: 48% 52%;
+  }
+  .entry-content h1 {
+    font-size: 73px;
+  }
+  .entry-bottom {
+    gap: 22px;
+  }
+  .entry-bottom > p {
+    font-size: 21px;
+  }
+  .entry-bottom > div {
+    padding-left: 22px;
+  }
+  .planning-workspace {
+    grid-template-columns: 260px minmax(0, 1fr);
+    min-height: calc(100svh - 186px);
+  }
+  .planning-workspace.with-detail {
+    grid-template-columns: 230px minmax(0, 1fr) 270px;
+  }
+  .plan-toolbar {
+    padding: 20px 18px;
+    flex-wrap: wrap;
+  }
+  .stop-detail {
+    padding-inline: 17px;
+  }
+  .island-track {
+    gap: 0;
+    padding-inline: 5px;
+  }
+  .island-stop {
+    min-width: 115px;
+  }
+  .island-stop strong {
+    font-size: 10px;
+  }
+  .journey-heading > p {
+    font-size: 28px;
+  }
+  .trip-meta {
+    gap: 10px;
+  }
+  .trip-meta > span + span {
+    padding-left: 10px;
+  }
+  .planning-workspace.with-detail .workspace-chat {
+    display: none;
+  }
+  .planning-workspace.with-detail {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+  .plan-summary {
+    padding-inline: 18px;
+  }
+}
+@media (max-width: 850px) {
+  .nav-context {
+    display: none;
+  }
+  .entry-layout {
+    grid-template-columns: 1fr 1fr;
+    min-height: 690px;
+  }
+  .entry-content {
+    padding: 43px 7% 30px 8%;
+  }
+  .entry-content h1 {
+    font-size: 65px;
+    letter-spacing: -2.5px;
+  }
+  .entry-description {
+    font-size: 12px;
+  }
+  .entry-content .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.1px;
+  }
+  .entry-description br {
+    display: none;
+  }
+  .brief-details {
+    grid-template-columns: 0.7fr 0.8fr 1.4fr;
+    gap: 8px;
+  }
+  .brief-details select,
+  .brief-details input {
+    font-size: 11px;
+  }
+  .select-wrap select {
+    font-size: 14px;
+  }
+  .destination-field {
+    padding: 13px;
+  }
+  .interest-chips button {
+    font-size: 9px;
+    padding-inline: 8px;
+  }
+  .create-trip {
+    font-size: 12px;
+  }
+  .world-stage {
+    border-bottom-left-radius: 60px;
+  }
+  .world-stage-heading {
+    font-size: 9px;
+    top: 40px;
+  }
+  .world-stage-corner {
+    display: none;
+  }
+  .destination-coordinate {
+    width: 245px;
+    bottom: 110px;
+  }
+  .globe-help {
+    font-size: 8px;
+    bottom: 77px;
+  }
+  .globe-viewport {
+    inset: 100px -65px 110px;
+  }
+  .world-stage::before {
+    width: 110%;
+  }
+  .world-stage::after {
+    width: 135%;
+  }
+  .entry-bottom {
+    padding-block: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .entry-bottom > div {
+    display: none;
+  }
+  .entry-bottom > .button {
+    font-size: 10px;
+  }
+  .planner-titlebar {
+    padding-inline: 20px;
+  }
+  .planner-titlebar h1 {
+    font-size: 30px;
+  }
+  .planner-titlebar > div:first-child {
+    gap: 12px;
+  }
+  .trip-meta > span {
+    display: none;
+  }
+  .planning-workspace {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+  .chat-panel {
+    padding-inline: 15px;
+  }
+  .plan-toolbar {
+    gap: 12px;
+  }
+  .view-switch button {
+    padding: 7px;
+  }
+  .journey-heading > p {
+    font-size: 28px;
+  }
+  .journey-heading {
+    padding-top: 15px;
+  }
+  .island-track {
+    flex-wrap: wrap;
+    min-height: 410px;
+    align-content: center;
+    padding-block: 35px;
+  }
+  .island-stop {
+    min-width: 130px;
+    width: 45%;
+  }
+  .island-stop-0 {
+    transform: translateY(15px);
+  }
+  .island-stop-1 {
+    transform: translateY(-20px);
+  }
+  .island-stop-2 {
+    transform: translateY(-10px);
+    margin-top: 20px;
+  }
+  .journey-connector {
+    opacity: 0.35;
+  }
+  .plan-summary {
+    flex-wrap: wrap;
+    font-size: 8px;
+  }
+  .itinerary-list {
+    padding: 20px 18px;
+  }
+  .itinerary-row {
+    gap: 9px;
+    padding: 13px 10px;
+  }
+  .visit-copy > span {
+    display: none;
+  }
+  .place-tile {
+    width: 40px;
+    min-width: 40px;
+    height: 45px;
+  }
+  .visit-time {
+    min-width: 30px;
+    font-size: 9px;
+  }
+  .visit-copy strong {
+    font-size: 11px;
+  }
+  .planning-workspace.with-detail {
+    grid-template-columns: minmax(0, 1fr) 270px;
+  }
+  .with-detail .journey-heading > p {
+    font-size: 25px;
+  }
+  .with-detail .island-stop {
+    min-width: 120px;
+  }
+  .with-detail .island-track {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 25px 0;
+  }
+  .with-detail .island-stop {
+    width: 160px;
+    transform: none;
+    margin: 0;
+  }
+  .with-detail .island-art {
+    max-height: 110px;
+  }
+  .with-detail .island-time {
+    margin-bottom: -3px;
+  }
+  .with-detail .island-stop strong {
+    font-size: 10px;
+  }
+  .with-detail .island-stop-1 {
+    margin-left: 55px;
+  }
+  .with-detail .island-stop-0,
+  .with-detail .island-stop-2 {
+    margin-right: 55px;
+  }
+  .with-detail .journey-connector {
+    display: none;
+  }
+  .with-detail .journey-scene {
+    min-height: 700px;
+  }
+  .with-detail .plan-toolbar {
+    padding: 14px;
+  }
+}

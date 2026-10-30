@@ -1,0 +1,80 @@
+.hosted-signin-hint {
+  margin: -2px 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.chat-panel .chat-signin-notice {
+  flex-shrink: 0;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-muted);
+  color: var(--foreground);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.chat-signin-notice .chat-signin-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin: 6px 0 0;
+  padding: 7px 14px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.chat-signin-notice .chat-signin-action:hover {
+  background: var(--surface-muted);
+}
+
+.chat-signin-notice .chat-signin-action:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.hosted-signin-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin: 24px 32px 0;
+  padding: 18px 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+.hosted-signin-banner strong {
+  font-size: 15px;
+}
+
+.hosted-signin-banner p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.hosted-signin-banner .button {
+  min-height: 40px;
+  white-space: normal;
+}
+
+@media (max-width: 640px) {
+  .hosted-signin-banner {
+    margin: 16px 16px 0;
+    padding: 16px;
+  }
+}

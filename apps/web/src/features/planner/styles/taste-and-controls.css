@@ -1,0 +1,180 @@
+.optional-brief {
+  margin-top: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.optional-brief summary {
+  font-size: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  min-height: 30px;
+}
+.optional-brief summary > span {
+  float: right;
+  font-size: 9px;
+}
+.optional-brief .field-pair {
+  margin-top: 10px;
+}
+.optional-brief p {
+  font-size: 9px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: 9px;
+}
+.taste-connect {
+  max-width: 440px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+}
+.taste-connect summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  cursor: pointer;
+  min-height: 34px;
+  list-style: none;
+}
+.taste-connect summary::-webkit-details-marker {
+  display: none;
+}
+.taste-connect summary > .tiny-star {
+  font-size: 16px;
+}
+.connect-label {
+  margin-left: auto;
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.taste-connect > p {
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: 10px;
+}
+.taste-connect .provider-note {
+  background: var(--surface-muted);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 9px;
+}
+.taste-search {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  margin-top: 14px;
+  background: var(--surface);
+}
+.taste-search input {
+  border: 0;
+  background: transparent;
+  width: 100%;
+  min-width: 0;
+  font-size: 11px;
+  padding: 12px;
+}
+.taste-results > button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  text-align: left;
+  min-height: 45px;
+}
+.taste-results strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+}
+.taste-results small {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+  color: var(--muted);
+}
+.taste-results > button[aria-pressed="true"] {
+  background: var(--surface-muted);
+}
+.selected-seeds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+.selected-seeds button {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  min-height: 36px;
+}
+.taste-connect > .button {
+  font-size: 11px;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+.taste-connect .taste-footnote {
+  font-size: 8px;
+  line-height: 1.7;
+}
+.stop-detail:focus {
+  outline: 0;
+}
+.voice-orb.speaking {
+  background: var(--accent);
+}
+.replace-form {
+  margin-top: 17px;
+}
+.replace-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.replace-form select {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--foreground);
+  padding: 5px 8px;
+  font-size: 10px;
+}
+.replace-form > .button {
+  width: 100%;
+  margin-top: 10px;
+  justify-content: space-between;
+  font-size: 10px;
+  min-height: 38px;
+}
+.taste-connect summary:focus-visible,
+.optional-brief summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+fieldset.day-tabs {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+}
+fieldset.view-switch {
+  margin: 0;
+  min-width: 0;
+}

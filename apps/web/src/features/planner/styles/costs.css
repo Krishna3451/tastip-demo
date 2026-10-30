@@ -1,0 +1,205 @@
+.cost-planner {
+  padding: 30px;
+}
+.cost-heading {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.cost-symbol {
+  display: grid;
+  place-items: center;
+  background: var(--surface-muted);
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+.cost-heading h2 {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  margin-top: 6px;
+}
+.cost-introduction,
+.cost-scope {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 18px 0;
+  max-width: 700px;
+}
+.cost-totals {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.cost-totals article {
+  display: grid;
+  gap: 8px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  min-width: 190px;
+}
+.cost-totals small,
+.cost-totals span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.cost-totals strong {
+  font-size: 26px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.cost-budget {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 18px 0;
+  line-height: 1.6;
+}
+.cost-budget span {
+  color: var(--muted);
+}
+.cost-workspace {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 28px;
+  margin-top: 28px;
+  align-items: start;
+}
+.cost-form {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.cost-form h3,
+.cost-records h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.cost-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  min-width: 0;
+}
+.cost-form input,
+.cost-form select {
+  min-width: 0;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--foreground);
+  background: var(--surface);
+  font-size: 13px;
+}
+.cost-form-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.cost-form-actions,
+.cost-record-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cost-draft-notice {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 10px;
+  background: var(--surface-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.cost-draft-notice .button {
+  white-space: normal;
+}
+.cost-save-feedback {
+  color: var(--muted);
+  font-size: 12px;
+}
+.cost-records h3 span {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.cost-records ul {
+  list-style: none;
+  padding: 0;
+}
+.cost-records li {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cost-record-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cost-record-heading h4 {
+  font-size: 17px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.cost-record-heading strong {
+  font-size: 17px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.cost-records li p,
+.cost-empty {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 10px 0 14px;
+}
+.cost-record-actions small {
+  font-size: 11px;
+  color: var(--muted);
+  margin-right: auto;
+}
+.cost-record-actions button {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+  min-height: 32px;
+}
+@media (max-width: 1000px) {
+  .cost-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .cost-planner {
+    padding: 22px 16px;
+  }
+  .cost-heading h2 {
+    font-size: 29px;
+  }
+  .cost-form {
+    padding: 18px;
+  }
+  .cost-totals article {
+    flex: 1;
+    min-width: 0;
+  }
+  .cost-totals strong {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,316 @@
+.mt-trip-toolbar {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 28px;
+}
+.mt-trip-toolbar .mt-icon {
+  height: 32px;
+  width: 32px;
+  border: 1px solid #303030;
+}
+.mt-trip-toolbar > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mt-trip-invite {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 30px;
+  padding: 3px 8px 3px 3px;
+  font-size: 13px;
+}
+.mt-trip-invite .mt-avatar {
+  width: 22px;
+  height: 22px;
+  font-size: 11px;
+  background: #6866bb;
+}
+.mt-trip-more {
+  position: relative;
+}
+.mt-trip-more > [role="menu"] {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  min-width: 220px;
+  padding: 5px;
+  background: #242424;
+  border: 1px solid #3b3b3b;
+  border-radius: 10px;
+  box-shadow: 0 5px 30px #0007;
+  z-index: 32;
+}
+.mt-trip-more [role="menuitem"] {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 10px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border-radius: 6px;
+}
+.mt-trip-more [role="menuitem"]:hover {
+  background: #333;
+}
+.mt-reference-trip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  padding: 40px 56px 60px;
+  max-width: 1560px;
+  margin: auto;
+}
+.mt-reference-trip .mt-editable-title h1 {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.mt-trip-planning {
+  min-width: 0;
+}
+.mt-trip-summary {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid #272727;
+  border-radius: 30px;
+  margin: 16px 0 28px;
+  padding: 7px 0;
+}
+.mt-trip-summary button {
+  background: transparent;
+  color: #ddd;
+  border: 0;
+  border-right: 1px solid #333;
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.mt-trip-summary button:last-child {
+  border: 0;
+}
+.mt-trip-suggestion {
+  margin: 0 0 48px;
+}
+.mt-trip-suggestion .mt-assistant-mark {
+  margin: 0 0 14px;
+  width: 32px;
+  height: 32px;
+}
+.mt-trip-suggestion > p {
+  font-size: 23px;
+  line-height: 33px;
+  letter-spacing: -0.25px;
+  font-weight: 600;
+  margin: 0 0 22px;
+}
+.mt-trip-suggestion > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mt-trip-suggestion .mt-pill {
+  font-size: 13px;
+  padding: 10px 16px;
+}
+.mt-trip-chat-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 18px;
+}
+.mt-trip-chat-heading h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+.mt-trip-chat-heading small {
+  font-size: 15px;
+  font-weight: 400;
+  color: #888;
+}
+.mt-trip-chat-cards {
+  display: grid;
+  gap: 12px;
+}
+.mt-trip-chat-cards > a {
+  border: 1px solid #303030;
+  border-radius: 16px;
+  padding: 15px 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+.mt-trip-chat-cards strong {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+}
+.mt-trip-chat-cards small {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  margin-top: 6px;
+}
+.mt-trip-chat-cards .mt-muted {
+  font-size: 13px;
+  line-height: 20px;
+}
+.mt-reference-trip .mt-entry-composer {
+  position: sticky;
+  inset: auto;
+  bottom: 24px;
+  width: 100%;
+  transform: none;
+  margin: 40px 0 0;
+  max-width: none;
+  z-index: 20;
+}
+.mt-trip-workspace {
+  min-width: 0;
+}
+.mt-trip-workspace-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.mt-trip-workspace-buttons > button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #303030;
+  background: transparent;
+  border-radius: 17px;
+  padding: 16px 12px;
+  min-height: 58px;
+  color: #eee;
+  text-align: left;
+}
+.mt-trip-workspace-buttons > button:hover {
+  background: #1b1b1b;
+}
+.mt-trip-workspace-buttons strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+.mt-trip-workspace-buttons small {
+  margin-left: auto;
+  color: #aaa;
+  font-size: 11px;
+  padding: 2px 5px;
+  border-radius: 10px;
+  background: #1e1e1e;
+}
+.mt-trip-overview-map {
+  height: max(400px, calc(100svh - 322px));
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #222;
+  background: #1d2528;
+}
+.mt-trip-overview-map .leaflet-map {
+  height: 100%;
+  min-height: 100%;
+  border-radius: 0;
+}
+.mt-trip-overview-map .leaflet-container {
+  height: 100%;
+  min-height: 100%;
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .mt-reference-trip {
+    gap: 28px;
+    padding-inline: 32px;
+  }
+  .mt-reference-trip .mt-editable-title h1 {
+    font-size: 28px;
+  }
+  .mt-trip-suggestion > p {
+    font-size: 21px;
+    line-height: 30px;
+  }
+  .mt-trip-workspace-buttons {
+    gap: 8px;
+  }
+  .mt-trip-workspace-buttons > button {
+    gap: 8px;
+  }
+  .mt-trip-workspace-buttons strong {
+    font-size: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .mt-trip-toolbar {
+    padding-inline: 20px;
+  }
+  .mt-reference-trip {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 22px 100px;
+    gap: 30px;
+  }
+  .mt-reference-trip .mt-editable-title h1 {
+    font-size: 28px;
+    line-height: 35px;
+  }
+  .mt-trip-summary {
+    margin-bottom: 25px;
+  }
+  .mt-trip-summary button {
+    font-size: 11px;
+    padding-inline: 9px;
+  }
+  .mt-trip-suggestion {
+    margin-bottom: 30px;
+  }
+  .mt-trip-suggestion > p {
+    font-size: 21px;
+    line-height: 30px;
+  }
+  .mt-reference-trip .mt-entry-composer {
+    position: relative;
+    bottom: auto;
+    margin-top: 25px;
+    left: auto;
+    right: auto;
+  }
+  .mt-trip-workspace-buttons {
+    margin-bottom: 20px;
+  }
+  .mt-trip-overview-map {
+    height: 350px;
+  }
+  .mt-trip-toolbar .mt-trip-invite {
+    display: none;
+  }
+}
+.mt-trip-overview-map .geographic-map-wrap {
+  height: 100%;
+}
+.mt-trip-overview-map .geographic-map {
+  height: 100%;
+  min-height: 100%;
+  border-radius: 0;
+}
+.mt-trip-overview-map .leaflet-tile-pane {
+  filter: invert(0.9) hue-rotate(190deg) saturate(0.55);
+}
+.mt-trip-overview-map .leaflet-control-zoom a {
+  background: #222;
+  color: #eee;
+  border-color: #444;
+}

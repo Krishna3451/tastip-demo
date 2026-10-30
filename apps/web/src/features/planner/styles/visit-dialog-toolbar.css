@@ -1,0 +1,26 @@
+.visit-dialog .stop-detail {
+  padding-top: 0;
+  scroll-padding-block: 92px 20px;
+}
+.visit-dialog .detail-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  min-height: 73px;
+  padding-top: 17px;
+  gap: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.visit-dialog .detail-toolbar .icon-button {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+}
+@media (max-width: 620px) {
+  .visit-dialog .detail-toolbar {
+    min-height: 76px;
+    padding-top: 20px;
+  }
+}

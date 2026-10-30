@@ -1,0 +1,58 @@
+.repeat-visit {
+  margin: 22px 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+.repeat-visit h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.repeat-visit p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+.repeat-visit label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  margin: 14px 0;
+  min-width: 0;
+}
+.repeat-visit input,
+.repeat-visit select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--background);
+  color: var(--foreground);
+}
+.repeat-visit-actions,
+.repeat-visit-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.repeat-visit-times button {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 18px;
+  color: var(--foreground);
+  font-size: 12px;
+}
+.repeat-visit-times {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.repeat-visit-times button[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}

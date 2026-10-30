@@ -1,0 +1,954 @@
+/* Supporting workspaces inherit the planner's shared navy palette.
+   Reset the interim reference tokens before mapping the discovery aliases. */
+.mt-app.tastip-discovery {
+  --background: inherit;
+  --surface: inherit;
+  --surface-muted: inherit;
+  --foreground: inherit;
+  --muted: inherit;
+  --subtle: inherit;
+  --border: inherit;
+  --primary: inherit;
+  --primary-hover: inherit;
+  --primary-foreground: inherit;
+  --accent: inherit;
+  --focus: inherit;
+  --error: inherit;
+  --mt-bg: var(--background);
+  --mt-surface: var(--surface);
+  --mt-raised: var(--surface-muted);
+  --mt-border: var(--border);
+  --mt-text: var(--foreground);
+  --mt-muted: var(--muted);
+  --mt-rail: 0px;
+  color-scheme: dark;
+  font-family: var(--font-ui, Arial), Arial, sans-serif;
+}
+body:has(.mt-app.tastip-discovery) {
+  background: var(--background);
+  color-scheme: dark;
+}
+.tastip-discovery .mt-main {
+  margin: 0;
+  padding: 0;
+  min-height: calc(100svh - 80px);
+}
+.discovery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 80px;
+  padding: 12px clamp(20px, 4.2vw, 64px);
+  border-bottom: 1px solid var(--mt-border);
+  background: var(--mt-bg);
+}
+.discovery-brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 7px;
+  font-size: 31px;
+  font-weight: 650;
+  letter-spacing: -1.8px;
+}
+.discovery-brand > svg {
+  color: var(--accent);
+  transform: rotate(-14deg);
+}
+.discovery-brand > span > span {
+  color: var(--accent);
+}
+.discovery-navigation,
+.discovery-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.discovery-navigation {
+  margin-inline: auto;
+}
+.tastip-discovery .discovery-navigation > *,
+.discovery-header-actions > button,
+.discovery-account > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 10px 13px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--mt-muted);
+  font-size: 12px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+.discovery-navigation > [aria-current="page"],
+.tastip-discovery .discovery-navigation > *:hover,
+.discovery-header-actions > button:hover,
+.discovery-account > button:hover {
+  color: var(--mt-text);
+  background: var(--mt-raised);
+}
+.discovery-navigation > [aria-current="page"] {
+  box-shadow: inset 0 -2px 0 var(--primary);
+}
+.discovery-header-actions .discovery-new-trip {
+  color: var(--primary);
+}
+.discovery-account {
+  position: relative;
+}
+.discovery-account > button > span {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.discovery-account-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 45;
+  width: 240px;
+  padding: 8px;
+  border: 1px solid var(--mt-border);
+  border-radius: 14px;
+  background: var(--mt-surface);
+  box-shadow: 0 12px 32px #0005;
+}
+.discovery-account-menu > p {
+  padding: 12px;
+  color: var(--mt-muted);
+  font-size: 12px;
+  border-bottom: 1px solid var(--mt-border);
+  margin-bottom: 5px;
+}
+.discovery-account-menu :is(a, button),
+.discovery-chat-options [role="menu"] button {
+  display: block;
+  width: 100%;
+  padding: 11px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  font-size: 13px;
+}
+.discovery-account-menu :is(a, button):hover,
+.discovery-chat-options [role="menu"] button:hover {
+  background: var(--mt-raised);
+}
+.discovery-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 36px clamp(24px, 4.2vw, 64px) 8px;
+}
+.discovery-intro .eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.discovery-intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 3.2vw, 47px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+.discovery-intro > p {
+  color: var(--mt-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.tastip-discovery :is(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.tastip-discovery :is(input, select, textarea) {
+  color: var(--mt-text);
+  background: var(--mt-surface);
+  border-color: var(--mt-border);
+}
+.tastip-discovery :is(input, textarea)::placeholder {
+  color: var(--mt-muted);
+  opacity: 0.85;
+}
+.tastip-discovery :is(.mt-pill, .mt-icon):hover {
+  background: var(--mt-raised);
+}
+.tastip-discovery :is(.mt-pill, .mt-filled, .mt-search) {
+  color: var(--mt-text);
+  background: var(--mt-surface);
+  border-color: var(--mt-border);
+}
+.tastip-discovery .mt-pill.outlined {
+  background: transparent;
+  border-color: var(--mt-border);
+}
+.tastip-discovery .mt-primary,
+.tastip-discovery .mt-compose-send {
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+.tastip-discovery .mt-primary:hover {
+  background: var(--primary-hover);
+}
+.tastip-discovery
+  :is(
+    .mt-muted,
+    .mt-count,
+    .mt-card-meta,
+    .mt-page-intro,
+    .mt-feed-end,
+    .mt-character-count,
+    .mt-empty-icon
+  ) {
+  color: var(--mt-muted);
+}
+.tastip-discovery .mt-error {
+  background: color-mix(in srgb, var(--error) 12%, var(--mt-bg));
+  color: var(--error);
+}
+.tastip-discovery .mt-loading {
+  color: var(--mt-muted);
+}
+.tastip-discovery .mt-dialog {
+  color: var(--mt-text);
+  background: var(--mt-surface);
+  border-color: var(--mt-border);
+  box-shadow: 0 18px 70px #0005;
+}
+.tastip-discovery .mt-dialog::backdrop {
+  background: #020711b3;
+  backdrop-filter: blur(4px);
+}
+.tastip-discovery
+  :is(
+    .mt-tabs,
+    .mt-collection-privacy,
+    .mt-saved-sync,
+    .mt-checkbox-list,
+    .mt-discovery-collection
+  ) {
+  border-color: var(--mt-border);
+}
+.tastip-discovery .mt-tabs > * {
+  color: var(--mt-muted);
+}
+.tastip-discovery .mt-tabs > .selected {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+.tastip-discovery
+  :is(
+    .mt-empty p,
+    .mt-collection-privacy p,
+    .mt-collection-card small,
+    .mt-section-heading p,
+    .mt-personalize-card p,
+    .mt-agent-empty-card p,
+    .mt-picker-subtitle
+  ) {
+  color: var(--mt-muted);
+}
+.tastip-discovery .mt-empty h2 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+}
+.tastip-discovery .mt-page-content {
+  max-width: 1440px;
+  padding-top: 44px;
+  padding-bottom: 80px;
+}
+.tastip-discovery .mt-page-heading h1 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 3.3vw, 46px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+}
+.tastip-discovery .mt-heading-actions {
+  position: static;
+  inset: auto;
+  height: auto;
+  flex-wrap: wrap;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+}
+.tastip-discovery .mt-collection-card > span {
+  color: var(--primary);
+  background: var(--mt-raised);
+  border: 1px solid var(--mt-border);
+}
+.tastip-discovery .mt-collection-options > button {
+  color: var(--mt-text);
+  background: var(--mt-surface);
+  border: 1px solid var(--mt-border);
+}
+.tastip-discovery .mt-collection-menu,
+.tastip-discovery .mt-attach-menu {
+  color: var(--mt-text);
+  background: var(--mt-surface);
+  border-color: var(--mt-border);
+  box-shadow: 0 10px 25px #0005;
+}
+.tastip-discovery .mt-collection-menu button:hover,
+.tastip-discovery .mt-attach-menu button:hover {
+  background: var(--mt-raised);
+}
+.tastip-discovery .mt-collection-cover img {
+  border-radius: 14px;
+}
+.tastip-discovery .mt-explore-workspace {
+  max-width: 1600px;
+  margin-inline: auto;
+  height: calc(100svh - 218px);
+  min-height: 540px;
+  grid-template-columns: minmax(390px, 1fr) minmax(340px, 1.02fr);
+  padding: 20px clamp(24px, 4.2vw, 64px) 32px;
+  gap: 32px;
+}
+.tastip-discovery .mt-explore-workspace.map-hidden {
+  grid-template-columns: 1fr;
+}
+.tastip-discovery .mt-explore-city {
+  font-family: var(--font-display);
+  font-size: 29px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.6px;
+}
+.tastip-discovery .mt-explore-categories button {
+  min-height: 38px;
+  color: var(--mt-muted);
+}
+.tastip-discovery .mt-explore-categories button.selected {
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+.tastip-discovery .mt-discovery-toolbar {
+  border-color: var(--mt-border);
+  background: var(--mt-raised);
+}
+.tastip-discovery .mt-discovery-toolbar p,
+.tastip-discovery .mt-discovery-actions label,
+.tastip-discovery .mt-discovery-summary {
+  color: var(--mt-muted);
+}
+.tastip-discovery .mt-discovery-skeletons span {
+  background: var(--mt-raised);
+}
+.tastip-discovery .mt-explore-map {
+  border: 1px solid var(--mt-border);
+  border-radius: 22px;
+}
+.tastip-discovery .mt-explore-map .leaflet-tile-pane {
+  filter: none;
+}
+.tastip-discovery .mt-explore-map .leaflet-control-zoom a {
+  color: var(--primary);
+  background: var(--mt-surface);
+  border-color: var(--mt-border);
+}
+.tastip-discovery .leaflet-control-attribution {
+  color: var(--mt-muted);
+  background: color-mix(in srgb, var(--mt-surface) 94%, transparent);
+}
+.tastip-discovery .leaflet-control-attribution a {
+  color: var(--primary);
+}
+.tastip-discovery .mt-card-image {
+  background: var(--mt-raised);
+}
+.tastip-discovery .mt-card-image-link {
+  color: var(--primary);
+}
+.tastip-discovery .mt-card-actions .mt-icon {
+  background: color-mix(in srgb, var(--mt-surface) 90%, transparent);
+  color: var(--mt-text);
+}
+.tastip-discovery .mt-card-actions .saved {
+  color: var(--primary);
+}
+.tastip-discovery .mt-home-content {
+  max-width: 1440px;
+  padding-top: 30px;
+}
+.tastip-discovery .mt-categories {
+  border-color: var(--mt-border);
+  justify-content: flex-start;
+}
+.tastip-discovery .mt-categories > button {
+  border-color: var(--mt-border);
+  background: var(--mt-surface);
+}
+.tastip-discovery .mt-categories > button:hover {
+  background: var(--mt-raised);
+}
+.tastip-discovery .mt-categories > button > span {
+  color: var(--primary);
+  background: var(--mt-raised);
+}
+.tastip-discovery .mt-home-suggestion {
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+.tastip-discovery .mt-home-suggestion h1 {
+  font-family: var(--font-display);
+  font-size: clamp(35px, 4vw, 54px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1.7px;
+  max-width: 760px;
+  margin-block: 20px 26px;
+  text-wrap: balance;
+}
+.tastip-discovery .mt-assistant-mark {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.tastip-discovery .mt-agent-empty-card,
+.tastip-discovery .mt-personalize-card {
+  background: var(--mt-raised);
+  border-color: var(--mt-border);
+}
+.tastip-discovery .mt-agent-emoji {
+  color: var(--accent);
+}
+.tastip-discovery .mt-destination-card strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 32px;
+  color: var(--mt-text);
+}
+.tastip-discovery .mt-toggle {
+  background: var(--mt-border);
+}
+.tastip-discovery .mt-toggle.checked {
+  background: var(--primary);
+}
+.tastip-discovery .mt-toggle > span {
+  background: var(--mt-muted);
+}
+.tastip-discovery .mt-toggle.checked > span {
+  background: var(--primary-foreground);
+}
+.tastip-discovery .mt-entry-composer {
+  left: 50%;
+  bottom: 22px;
+  width: min(746px, calc(100vw - 48px));
+  background: var(--mt-surface);
+  border-color: var(--mt-border);
+  box-shadow: 0 8px 32px #0005;
+}
+.tastip-discovery .mt-entry-composer textarea {
+  background: transparent;
+}
+.tastip-discovery .mt-toast {
+  background: var(--mt-surface);
+  color: var(--mt-text);
+  border-color: var(--mt-border);
+  left: 50%;
+  bottom: 24px;
+}
+.discovery-history {
+  width: min(640px, calc(100vw - 32px));
+}
+.discovery-history section > header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.discovery-history h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+}
+.discovery-history section > p {
+  margin: 10px 0 22px;
+  color: var(--mt-muted);
+}
+.discovery-history-tools {
+  display: flex;
+  gap: 10px;
+}
+.discovery-history-tools > label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  padding-left: 13px;
+  border: 1px solid var(--mt-border);
+  border-radius: 10px;
+}
+.discovery-history-tools input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding-left: 0;
+}
+.discovery-history-tabs {
+  display: flex;
+  gap: 18px;
+  border-bottom: 1px solid var(--mt-border);
+  margin-top: 24px;
+}
+.discovery-history-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  padding-inline: 0;
+  color: var(--mt-muted);
+}
+.discovery-history-tabs [aria-pressed="true"] {
+  border-bottom-color: var(--primary);
+  color: var(--primary);
+}
+.discovery-chat-list {
+  padding: 0;
+  list-style: none;
+}
+.discovery-chat-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--mt-border);
+}
+.discovery-chat-list li > a {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  padding: 18px 0;
+}
+.discovery-chat-list strong,
+.discovery-chat-list small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.discovery-chat-list strong {
+  font-weight: 550;
+}
+.discovery-chat-list small {
+  margin-top: 5px;
+  color: var(--mt-muted);
+}
+.discovery-chat-options {
+  position: relative;
+}
+.discovery-chat-options [role="menu"] {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  top: 36px;
+  width: 150px;
+  padding: 5px;
+  background: var(--mt-surface);
+  border: 1px solid var(--mt-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px #0005;
+}
+@media (max-width: 1100px) {
+  .discovery-header {
+    gap: 14px;
+    padding-inline: 24px;
+  }
+  .tastip-discovery .discovery-navigation > * {
+    padding-inline: 10px;
+  }
+  .discovery-header-actions > button > span {
+    display: none;
+  }
+  .tastip-discovery .mt-explore-workspace {
+    grid-template-columns: minmax(320px, 1fr) minmax(260px, 0.9fr);
+    gap: 22px;
+  }
+}
+@media (max-width: 800px) {
+  .discovery-header {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 10px 20px 8px;
+  }
+  .discovery-brand {
+    font-size: 29px;
+  }
+  .discovery-header-actions {
+    margin-left: auto;
+  }
+  .discovery-header-actions > button,
+  .discovery-account > button {
+    padding-inline: 10px;
+  }
+  .discovery-account > button > span {
+    display: none;
+  }
+  .discovery-navigation {
+    order: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    margin: 0;
+    gap: 4px;
+  }
+  .tastip-discovery .discovery-navigation > * {
+    flex-direction: column;
+    gap: 4px;
+    min-height: 48px;
+    padding: 5px;
+    font-size: 10px;
+  }
+  .discovery-intro {
+    padding: 26px 24px 2px;
+  }
+  .discovery-intro > p {
+    display: none;
+  }
+  .discovery-intro .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.4px;
+  }
+  .tastip-discovery .mt-explore-workspace {
+    height: auto;
+    min-height: 0;
+    grid-template-columns: 1fr;
+    padding: 20px 24px 40px;
+  }
+  .tastip-discovery .mt-page-content {
+    padding: 28px 24px 60px;
+  }
+  .tastip-discovery .mt-page-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .tastip-discovery .mt-tabs {
+    gap: 14px;
+  }
+  .tastip-discovery .mt-tabs > * {
+    font-size: 16px;
+  }
+  .tastip-discovery .mt-home-content {
+    padding-top: 22px;
+  }
+  .tastip-discovery .mt-agent-empty-card {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .tastip-discovery .mt-agent-empty-card > .mt-pill {
+    margin-left: 0;
+  }
+  .tastip-discovery .mt-entry-composer {
+    width: calc(100vw - 32px);
+    bottom: 16px;
+  }
+  .discovery-history-tools {
+    flex-wrap: wrap;
+  }
+  .discovery-history-tools > label {
+    flex-basis: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tastip-discovery *,
+  .tastip-discovery *::before,
+  .tastip-discovery *::after {
+    scroll-behavior: auto;
+    animation: none;
+    transition: none;
+  }
+}
+
+.tastip-discovery .mt-saved-sync p,
+.tastip-discovery .mt-discovery-collection p {
+  color: var(--mt-muted);
+}
+.tastip-discovery .mt-home-suggestion > .mt-assistant-mark {
+  display: none;
+}
+.tastip-discovery .mt-explore-categories button {
+  min-height: 40px;
+}
+.tastip-discovery .mt-icon,
+.tastip-discovery .mt-card-actions .mt-icon {
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+}
+.discovery-history section > header {
+  align-items: flex-start;
+  padding-right: 30px;
+}
+.discovery-history section > header > svg {
+  margin-top: 5px;
+}
+.discovery-history h2 {
+  line-height: 1.15;
+}
+@media (max-width: 800px) {
+  .discovery-history h2 {
+    font-size: 28px;
+  }
+}
+
+/* Full conversations use the same frame and the existing canonical chat panel. */
+.mt-app.tastip-conversation {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+.tastip-conversation > .discovery-header {
+  flex-shrink: 0;
+}
+.tastip-conversation > .mt-main.chat-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.tastip-conversation .mt-workspace-header {
+  flex-shrink: 0;
+  position: relative;
+  top: auto;
+  min-height: 92px;
+  height: auto;
+  padding: 18px clamp(20px, 4.2vw, 64px);
+  background: var(--mt-bg);
+  border-color: var(--mt-border);
+  backdrop-filter: none;
+}
+.tastip-conversation .mt-workspace-header > div {
+  min-width: 0;
+}
+.tastip-conversation .mt-workspace-header > div:first-child > div {
+  min-width: 0;
+}
+.tastip-conversation .full-chat-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 2.6vw, 34px);
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+}
+.tastip-conversation .mt-workspace-header small {
+  margin-top: 5px;
+  color: var(--mt-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.tastip-conversation .mt-workspace-header .mt-pill {
+  min-height: 40px;
+}
+.tastip-conversation .mt-main > .mt-conversation-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
+  padding: 20px clamp(20px, 4.2vw, 64px) 18px;
+}
+.tastip-conversation .mt-conversation-view .chat-panel {
+  min-height: 0;
+  height: 100%;
+  flex: 1;
+  background: transparent;
+}
+.tastip-conversation .mt-conversation-view .chat-panel-heading {
+  display: none;
+}
+.tastip-conversation .mt-conversation-view .conversation {
+  min-height: 0;
+  padding: 6px 8px 20px 0;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.tastip-conversation .mt-conversation-view .assistant-message,
+.tastip-conversation .mt-conversation-view .user-message {
+  color: var(--mt-text);
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.tastip-conversation .mt-conversation-view .user-message {
+  background: var(--mt-raised);
+  border-radius: 17px 17px 4px 17px;
+  max-width: min(85%, 620px);
+  padding: 12px 18px;
+}
+.tastip-conversation .mt-conversation-view .chat-composer {
+  flex-shrink: 0;
+  margin-top: 16px;
+  padding: 15px 18px 12px;
+  border-color: var(--mt-border);
+  background: var(--mt-surface);
+  box-shadow: 0 6px 24px #0004;
+  border-radius: 20px;
+}
+.tastip-conversation .mt-conversation-view .chat-composer textarea {
+  font-size: 16px;
+  min-height: 56px;
+  max-height: 140px;
+  color: var(--mt-text);
+}
+.tastip-conversation .mt-conversation-view .chat-composer textarea:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.tastip-conversation .mt-conversation-view .voice-button {
+  color: var(--mt-muted);
+  min-height: 42px;
+}
+.tastip-conversation .mt-conversation-view .send-button {
+  color: var(--primary-foreground);
+  background: var(--primary);
+  width: 42px;
+  height: 42px;
+}
+.tastip-conversation .mt-conversation-view .chat-disclosure {
+  color: var(--mt-muted);
+  font-size: 10px;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding-top: 0;
+}
+.tastip-conversation .mt-conversation-view .chat-proposal,
+.tastip-conversation .mt-conversation-view .voice-panel {
+  background: var(--mt-surface);
+  border-color: var(--mt-border);
+  color: var(--mt-text);
+}
+.tastip-conversation .voice-panel {
+  max-height: 40svh;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+.tastip-conversation .chat-plan-handoff {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 5px 18px;
+  margin: 20px 0;
+  padding: 16px 18px;
+  border: 1px solid var(--mt-border);
+  border-radius: 12px;
+  background: var(--mt-raised);
+  color: var(--mt-text);
+}
+.tastip-conversation .chat-plan-handoff > strong {
+  font-size: 14px;
+  grid-column: 1;
+}
+.tastip-conversation .chat-plan-handoff > p {
+  grid-column: 1;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+}
+.tastip-conversation .chat-plan-handoff > button {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+.tastip-conversation .chat-plan-handoff p,
+.tastip-conversation .chat-plan-handoff small {
+  color: var(--mt-muted);
+}
+.tastip-conversation .chat-thinking,
+.tastip-conversation .chat-reply-recovery {
+  font-size: 12px;
+  color: var(--mt-muted);
+}
+@media (max-width: 800px) {
+  .tastip-conversation .mt-workspace-header {
+    min-height: 96px;
+    padding: 15px 20px;
+    gap: 8px;
+  }
+  .tastip-conversation .mt-workspace-header > div {
+    gap: 8px;
+  }
+  .tastip-conversation .mt-workspace-header > div:last-child {
+    flex-shrink: 0;
+  }
+  .tastip-conversation .full-chat-title {
+    font-size: 25px;
+  }
+  .tastip-conversation .mt-workspace-header small {
+    font-size: 10px;
+  }
+  .tastip-conversation .mt-workspace-header .mt-icon {
+    min-width: 36px;
+    width: 36px;
+    height: 40px;
+  }
+  .tastip-conversation .mt-workspace-header .mt-pill {
+    padding-inline: 10px;
+  }
+  .tastip-conversation .mt-workspace-header .mt-pill svg {
+    display: none;
+  }
+  .tastip-conversation .mt-main > .mt-conversation-view {
+    padding: 14px 20px 12px;
+  }
+  .tastip-conversation .mt-conversation-view .chat-composer {
+    padding: 12px 14px 10px;
+    border-radius: 18px;
+  }
+  .tastip-conversation .mt-conversation-view .assistant-message,
+  .tastip-conversation .mt-conversation-view .user-message {
+    font-size: 14px;
+  }
+  .tastip-conversation .mt-conversation-view .user-message {
+    max-width: 92%;
+  }
+}
+@media (max-height: 700px) {
+  .tastip-conversation .mt-conversation-view .chat-composer textarea {
+    min-height: 38px;
+  }
+}
+.tastip-conversation .mt-toast {
+  bottom: 190px;
+}
+
+@media (max-width: 800px) {
+  .tastip-conversation .chat-plan-handoff {
+    gap: 8px 12px;
+    padding: 14px;
+  }
+  .tastip-conversation .chat-plan-handoff > p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .tastip-conversation .chat-plan-handoff > button {
+    grid-row: 1;
+    padding-inline: 12px;
+  }
+}

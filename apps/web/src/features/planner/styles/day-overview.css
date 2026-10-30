@@ -1,0 +1,34 @@
+.day-exp-day-card {
+  align-items: flex-start;
+}
+.day-exp-day-card > .day-exp-day-number {
+  padding-top: 2px;
+}
+.day-exp-day-card > svg {
+  margin-top: 4px;
+}
+.day-exp-day-peek {
+  color: var(--day-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 3px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.day-exp-day-card small {
+  line-height: 1.6;
+}
+@media (max-width: 700px) {
+  .day-exp-day-card {
+    position: relative;
+  }
+  .day-exp-day-card > svg {
+    display: none;
+  }
+  .day-exp-day-peek {
+    font-size: 11px;
+  }
+}

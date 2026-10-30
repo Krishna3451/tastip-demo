@@ -1,0 +1,358 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Tastip single-node private demo. Existing NAT-backed subnet only; no shared-network changes. Review costs before execution.",
+  "Parameters": {
+    "ProjectName": {
+      "Type": "String",
+      "Default": "tastip-demo",
+      "AllowedPattern": "tastip-[a-z0-9-]{1,24}"
+    },
+    "VpcId": { "Type": "AWS::EC2::VPC::Id" },
+    "PrivateSubnetId": { "Type": "AWS::EC2::Subnet::Id" },
+    "CloudFrontPrefixListId": { "Type": "String", "AllowedPattern": "pl-[a-f0-9]+" },
+    "CloudFrontServiceSecurityGroupId": {
+      "Type": "String",
+      "Default": "",
+      "AllowedPattern": "^$|^sg-[a-f0-9]+$",
+      "Description": "Phase two only: actual AWS-managed CloudFront VPC origins SG in this VPC. Never create or edit it."
+    },
+    "InstanceType": {
+      "Type": "String",
+      "Default": "t3.medium",
+      "AllowedValues": ["t3.small", "t3.medium"]
+    },
+    "LatestAmiId": {
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+      "Default": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
+    },
+    "ExistingDataVolumeId": {
+      "Type": "String",
+      "Default": "",
+      "AllowedPattern": "^$|^vol-[a-f0-9]+$",
+      "Description": "Optional retained Tastip volume in the subnet AZ. Never autoformat a nonblank volume."
+    }
+  },
+  "Conditions": {
+    "BootstrapIngress": { "Fn::Equals": [{ "Ref": "CloudFrontServiceSecurityGroupId" }, ""] },
+    "LockedIngress": {
+      "Fn::Not": [{ "Fn::Equals": [{ "Ref": "CloudFrontServiceSecurityGroupId" }, ""] }]
+    },
+    "NewDataVolume": { "Fn::Equals": [{ "Ref": "ExistingDataVolumeId" }, ""] }
+  },
+  "Resources": {
+    "SourceBucket": {
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            { "ServerSideEncryptionByDefault": { "SSEAlgorithm": "AES256" } }
+          ]
+        },
+        "OwnershipControls": { "Rules": [{ "ObjectOwnership": "BucketOwnerEnforced" }] },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        },
+        "VersioningConfiguration": { "Status": "Enabled" },
+        "Tags": [
+          { "Key": "Project", "Value": "Tastip" },
+          { "Key": "Name", "Value": { "Ref": "ProjectName" } }
+        ]
+      }
+    },
+    "SourceBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": { "Ref": "SourceBucket" },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": [
+                { "Fn::GetAtt": ["SourceBucket", "Arn"] },
+                { "Fn::Sub": "${SourceBucket.Arn}/*" }
+              ],
+              "Condition": { "Bool": { "aws:SecureTransport": "false" } }
+            }
+          ]
+        }
+      }
+    },
+    "InstanceRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": { "Service": "ec2.amazonaws.com" },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"],
+        "Policies": [
+          {
+            "PolicyName": "TastipSourceAndTwoKeysOnly",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "s3:GetObject",
+                  "Resource": { "Fn::Sub": "${SourceBucket.Arn}/releases/*" }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "ssm:GetParameters",
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${ProjectName}/OPENAI_API_KEY"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${ProjectName}/QLOO_API_KEY"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Deny",
+                  "Action": [
+                    "ssm:GetParameter",
+                    "ssm:GetParameters",
+                    "ssm:GetParametersByPath",
+                    "ssm:GetParameterHistory"
+                  ],
+                  "NotResource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${ProjectName}/OPENAI_API_KEY"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${ProjectName}/QLOO_API_KEY"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [{ "Key": "Project", "Value": "Tastip" }]
+      }
+    },
+    "InstanceProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": { "Roles": [{ "Ref": "InstanceRole" }] }
+    },
+    "OriginSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Tastip only: CloudFront to private proxy; HTTPS egress via existing NAT; no SSH",
+        "VpcId": { "Ref": "VpcId" },
+        "SecurityGroupEgress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 443,
+            "ToPort": 443,
+            "CidrIp": "0.0.0.0/0",
+            "Description": "SSM, source, pinned images and providers via existing NAT"
+          }
+        ],
+        "Tags": [
+          { "Key": "Project", "Value": "Tastip" },
+          { "Key": "Name", "Value": { "Fn::Sub": "${ProjectName}-origin" } }
+        ]
+      }
+    },
+    "BootstrapOriginIngress": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Condition": "BootstrapIngress",
+      "Properties": {
+        "GroupId": { "Ref": "OriginSecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 8080,
+        "ToPort": 8080,
+        "SourcePrefixListId": { "Ref": "CloudFrontPrefixListId" },
+        "Description": "Bootstrap only: AWS-managed CloudFront origin-facing prefix list"
+      }
+    },
+    "LockedOriginIngress": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Condition": "LockedIngress",
+      "Properties": {
+        "GroupId": { "Ref": "OriginSecurityGroup" },
+        "IpProtocol": "tcp",
+        "FromPort": 8080,
+        "ToPort": 8080,
+        "SourceSecurityGroupId": { "Ref": "CloudFrontServiceSecurityGroupId" },
+        "Description": "Only AWS-managed CloudFront VPC origin ENIs"
+      }
+    },
+    "Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": { "Ref": "LatestAmiId" },
+        "InstanceType": { "Ref": "InstanceType" },
+        "IamInstanceProfile": { "Ref": "InstanceProfile" },
+        "CreditSpecification": { "CPUCredits": "standard" },
+        "MetadataOptions": {
+          "HttpEndpoint": "enabled",
+          "HttpTokens": "required",
+          "HttpPutResponseHopLimit": 1
+        },
+        "NetworkInterfaces": [
+          {
+            "DeviceIndex": "0",
+            "SubnetId": { "Ref": "PrivateSubnetId" },
+            "AssociatePublicIpAddress": false,
+            "GroupSet": [{ "Ref": "OriginSecurityGroup" }]
+          }
+        ],
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeType": "gp3",
+              "VolumeSize": 30,
+              "Encrypted": true,
+              "DeleteOnTermination": true
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "\n",
+              [
+                "#!/bin/bash",
+                "set -eu",
+                "umask 077",
+                "dnf install -y docker python3 awscli-2",
+                "systemctl enable --now docker amazon-ssm-agent",
+                "install -d -m 0700 /var/lib/tastip /var/lib/tastip/releases /var/lib/tastip/logs /srv/tastip",
+                "install -d -m 0755 /usr/local/lib/docker/cli-plugins",
+                "curl --fail --silent --show-error --location --retry 3 --max-time 180 https://github.com/docker/compose/releases/download/v2.39.4/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose",
+                "printf '%s  %s\\n' 7af95166a730b87e172d4fc9aefea8725d3c6c7327d59149267b452114ddb7d4 /usr/local/lib/docker/cli-plugins/docker-compose | sha256sum --check --status",
+                "chmod 0755 /usr/local/lib/docker/cli-plugins/docker-compose",
+                "docker compose version > /var/lib/tastip/logs/bootstrap.log 2>&1"
+              ]
+            ]
+          }
+        },
+        "Tags": [
+          { "Key": "Project", "Value": "Tastip" },
+          { "Key": "Name", "Value": { "Ref": "ProjectName" } }
+        ]
+      }
+    },
+    "DataVolume": {
+      "Type": "AWS::EC2::Volume",
+      "Condition": "NewDataVolume",
+      "DeletionPolicy": "RetainExceptOnCreate",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "AvailabilityZone": { "Fn::GetAtt": ["Instance", "AvailabilityZone"] },
+        "Size": 10,
+        "VolumeType": "gp3",
+        "Encrypted": true,
+        "Tags": [
+          { "Key": "Project", "Value": "Tastip" },
+          { "Key": "Name", "Value": { "Fn::Sub": "${ProjectName}-private-data" } }
+        ]
+      }
+    },
+    "DataAttachment": {
+      "Type": "AWS::EC2::VolumeAttachment",
+      "Properties": {
+        "InstanceId": { "Ref": "Instance" },
+        "VolumeId": {
+          "Fn::If": ["NewDataVolume", { "Ref": "DataVolume" }, { "Ref": "ExistingDataVolumeId" }]
+        },
+        "Device": "/dev/sdf"
+      }
+    },
+    "VpcOrigin": {
+      "Type": "AWS::CloudFront::VpcOrigin",
+      "Properties": {
+        "VpcOriginEndpointConfig": {
+          "Name": { "Ref": "ProjectName" },
+          "Arn": {
+            "Fn::Sub": "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/${Instance}"
+          },
+          "HTTPPort": 8080,
+          "HTTPSPort": 443,
+          "OriginProtocolPolicy": "http-only"
+        },
+        "Tags": [{ "Key": "Project", "Value": "Tastip" }]
+      }
+    },
+    "Distribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Enabled": true,
+          "Comment": { "Fn::Sub": "${ProjectName}: private single-node SQLite demo" },
+          "HttpVersion": "http2and3",
+          "IPV6Enabled": true,
+          "PriceClass": "PriceClass_200",
+          "ViewerCertificate": { "CloudFrontDefaultCertificate": true },
+          "Origins": [
+            {
+              "Id": "TastipPrivate",
+              "DomainName": { "Fn::GetAtt": ["Instance", "PrivateDnsName"] },
+              "ConnectionAttempts": 2,
+              "ConnectionTimeout": 10,
+              "VpcOriginConfig": {
+                "VpcOriginId": { "Fn::GetAtt": ["VpcOrigin", "Id"] },
+                "OriginReadTimeout": 120,
+                "OriginKeepaliveTimeout": 30
+              }
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "TargetOriginId": "TastipPrivate",
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "Compress": true,
+            "AllowedMethods": ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"],
+            "CachedMethods": ["GET", "HEAD"],
+            "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+            "OriginRequestPolicyId": "216adef6-5c7f-47e4-b989-5492eafa07d3"
+          },
+          "CustomErrorResponses": [
+            { "ErrorCode": 400, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 403, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 404, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 405, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 414, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 500, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 501, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 502, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 503, "ErrorCachingMinTTL": 0 },
+            { "ErrorCode": 504, "ErrorCachingMinTTL": 0 }
+          ]
+        },
+        "Tags": [{ "Key": "Project", "Value": "Tastip" }]
+      }
+    }
+  },
+  "Outputs": {
+    "InstanceId": { "Value": { "Ref": "Instance" } },
+    "PrivateIp": { "Value": { "Fn::GetAtt": ["Instance", "PrivateIp"] } },
+    "OriginSecurityGroupId": { "Value": { "Ref": "OriginSecurityGroup" } },
+    "DataVolumeId": {
+      "Value": {
+        "Fn::If": ["NewDataVolume", { "Ref": "DataVolume" }, { "Ref": "ExistingDataVolumeId" }]
+      }
+    },
+    "SourceBucket": { "Value": { "Ref": "SourceBucket" } },
+    "DistributionId": { "Value": { "Ref": "Distribution" } },
+    "PublicOrigin": { "Value": { "Fn::Sub": "https://${Distribution.DomainName}" } },
+    "ParameterPrefix": { "Value": { "Fn::Sub": "/${ProjectName}" } }
+  }
+}

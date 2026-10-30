@@ -1,0 +1,15 @@
+.day-timeline-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 700px) {
+  .day-timeline-place-art.has-image-source {
+    flex-basis: 64px;
+    height: 80px;
+  }
+}

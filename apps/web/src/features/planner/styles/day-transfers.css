@@ -1,0 +1,29 @@
+.day-transfers .transfer-block {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 16px;
+  overflow-wrap: anywhere;
+}
+.day-transfers .transfer-block > .button {
+  justify-self: start;
+  white-space: normal;
+}
+.day-transfers .day-transfer-untimed {
+  border-style: dashed;
+  background: var(--surface-muted);
+}
+.day-transfer-dialog {
+  width: min(680px, calc(100vw - 32px));
+}
+.day-transfer-dialog h2 {
+  overflow-wrap: anywhere;
+}
+.day-transfer-dialog .transfer-editor {
+  margin: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.day-transfer-dialog .route-caveat,
+.day-transfer-dialog .transfer-editor > p {
+  line-height: 1.7;
+}

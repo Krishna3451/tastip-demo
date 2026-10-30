@@ -1,0 +1,165 @@
+.route-plan {
+  border-bottom: 1px solid var(--border);
+  padding: 22px 26px;
+  background: var(--surface);
+}
+.route-heading,
+.route-actions,
+.route-active-day {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.route-heading h2 {
+  font-size: 20px;
+  margin: 4px 0 12px;
+}
+.route-plan > p,
+.route-caveat {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 8px 0;
+}
+.route-stays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+  margin: 14px 0;
+}
+.route-stays li {
+  display: grid;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 12px;
+  flex: 1 1 180px;
+}
+.route-stays span,
+.route-stays small,
+.route-active-day span,
+.route-actions > span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.route-active-day {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.route-editor {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+.route-editor label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+.route-editor input,
+.route-editor select {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 10px;
+  background: var(--background);
+  width: 100%;
+  min-width: 0;
+}
+.route-city-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) 70px minmax(100px, 1fr);
+  align-items: end;
+  gap: 10px;
+}
+.route-city-tools {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.route-city-tools > .destination-search {
+  flex: 1 1 260px;
+  min-width: 0;
+  margin-top: 0;
+}
+.route-city-tools > button {
+  flex: none;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.route-transfers {
+  margin-top: 12px;
+  font-size: 12px;
+}
+.route-transfers > summary {
+  cursor: pointer;
+  padding: 10px 0;
+}
+.transfer-editor {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.transfer-editor h3 {
+  margin: 0;
+}
+.transfer-time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.transfer-time-grid fieldset {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 12px;
+}
+.transfer-time-grid summary {
+  cursor: pointer;
+}
+.transfer-block {
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--foreground);
+  font-size: 12px;
+}
+.transfer-block p {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+.transfer-block small {
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  .route-plan {
+    padding: 18px 14px;
+  }
+  .route-city-row {
+    grid-template-columns: 1fr 70px;
+  }
+  .route-city-row > label:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+  .transfer-time-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.route-editor > [role="status"] {
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 12px;
+  border-left: 2px solid var(--primary);
+  border-radius: 6px;
+  background: var(--surface-muted);
+}

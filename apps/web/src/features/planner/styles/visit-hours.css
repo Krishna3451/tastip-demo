@@ -1,0 +1,31 @@
+.visit-hours-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-left: 2px solid var(--accent);
+  border-radius: 6px;
+  background: var(--surface-muted);
+  color: var(--foreground);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.visit-hours-badge svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.visit-hours-review {
+  margin: 18px 0;
+  padding: 16px;
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface-muted);
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.visit-hours-review .button {
+  margin-top: 12px;
+}

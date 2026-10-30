@@ -1,0 +1,38 @@
+.idea-preview-dialog {
+  width: min(720px, calc(100vw - 32px));
+}
+.idea-preview-dialog > header > div {
+  min-width: 0;
+}
+.idea-preview-dialog h2 {
+  overflow-wrap: anywhere;
+}
+.idea-preview-dialog > header .icon-button {
+  flex-shrink: 0;
+}
+.idea-preview-dialog .detail-description {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.idea-preview-dialog .detail-photo img {
+  height: 280px;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+.idea-preview-dialog .detail-callout {
+  margin-block: 20px;
+}
+.idea-preview-dialog .detail-provider-links .button {
+  white-space: normal;
+}
+.idea-preview-next {
+  margin-block: 20px 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+@media (max-width: 620px) {
+  .idea-preview-dialog .detail-photo img {
+    height: 200px;
+  }
+}

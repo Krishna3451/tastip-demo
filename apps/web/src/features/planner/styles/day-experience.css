@@ -1,0 +1,1430 @@
+.day-experience {
+  --day-paper: var(--background);
+  --day-ink: var(--foreground);
+  --day-muted: var(--muted);
+  --day-line: var(--border);
+  color: var(--day-ink);
+  background: var(--day-paper);
+  border-top: 1px solid var(--day-line);
+  isolation: isolate;
+}
+.day-exp-topline {
+  padding: 20px 32px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--day-muted);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+.day-exp-topline > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.day-exp-topline > span:last-child {
+  letter-spacing: 0.02em;
+  font-size: 11px;
+}
+.day-exp-sparkle {
+  font-size: 20px;
+  color: var(--primary);
+}
+.day-exp-title {
+  padding: 30px 32px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.day-exp-title .eyebrow {
+  font-size: 9px;
+  color: var(--day-muted);
+  letter-spacing: 0.18em;
+}
+.day-exp-title h2 {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin: 10px 0 12px;
+}
+.day-exp-title h2 em {
+  font-weight: 400;
+  color: var(--day-muted);
+}
+.day-exp-title h2:focus,
+.day-timeline-header h3:focus {
+  outline: none;
+}
+.day-exp-title > div > p:last-child {
+  font-size: 12px;
+  color: var(--day-muted);
+  line-height: 1.6;
+}
+.day-exp-index {
+  align-self: start;
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  padding-top: 22px;
+}
+.day-exp-index span {
+  color: var(--day-muted);
+}
+.day-exp-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0fr);
+  transition: grid-template-columns 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  min-height: 510px;
+}
+.day-exp-world {
+  position: relative;
+  min-width: 0;
+  min-height: 510px;
+  overflow: hidden;
+}
+.day-island-scene {
+  height: 510px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.day-island-scene canvas {
+  display: block;
+  touch-action: pan-y;
+}
+.day-island-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.day-island-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  min-width: 108px;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  pointer-events: auto;
+  box-shadow: 0 6px 20px #0003;
+  color: var(--day-ink);
+  transition:
+    background 160ms,
+    opacity 500ms;
+  cursor: pointer;
+}
+.day-island-label:hover {
+  background: var(--surface);
+}
+.day-island-label > span {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--day-muted);
+}
+.day-island-label strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.day-island-label small {
+  font-size: 9px;
+  color: var(--day-muted);
+}
+.day-scene-fallback {
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  gap: 15px;
+  text-align: center;
+}
+.day-scene-fallback > span {
+  font-size: 64px;
+  font-weight: 200;
+  color: var(--subtle);
+}
+.day-scene-fallback p {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 28px;
+}
+.day-scene-fallback small {
+  color: var(--day-muted);
+  font-size: 12px;
+}
+.day-exp-ambient {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--primary) 10%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.ambient-a {
+  top: 20%;
+  left: 6%;
+}
+.ambient-b {
+  right: 5%;
+  bottom: 2%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 7%, transparent),
+    transparent 70%
+  );
+}
+.day-exp-world-note {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  color: var(--day-muted);
+  z-index: 2;
+  pointer-events: none;
+}
+.day-exp-world-note span {
+  margin-right: 7px;
+}
+.day-exp-day-shelf {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 10px;
+  padding: 24px 32px 30px;
+}
+.day-exp-day-card {
+  padding: 16px 12px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+  min-width: 0;
+  transition:
+    transform 220ms,
+    background 220ms,
+    box-shadow 220ms;
+}
+.day-exp-day-card:hover {
+  transform: translateY(-3px);
+  background: var(--surface);
+  box-shadow: 0 10px 18px #0003;
+}
+.day-exp-day-card > span:nth-child(2) {
+  display: grid;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+.day-exp-day-card strong {
+  font-size: 11px;
+  font-weight: 500;
+}
+.day-exp-day-card small {
+  color: var(--day-muted);
+  font-size: 9px;
+}
+.day-exp-day-number {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 28px;
+  color: var(--primary);
+  line-height: 1;
+}
+.day-exp-day-card > svg {
+  color: var(--day-muted);
+  width: 14px;
+  flex-shrink: 0;
+}
+.day-exp-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-size: 11px;
+  border: 1px solid var(--day-line);
+  border-radius: 100px;
+  padding: 10px 15px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: background 180ms;
+}
+.day-exp-back:hover {
+  background: var(--surface-muted);
+}
+.day-exp-timeline {
+  min-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(36px);
+  transition:
+    opacity 500ms,
+    transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.day-timeline-inner {
+  padding: 0 28px 28px 10px;
+  min-width: 450px;
+}
+.day-experience-focused .day-exp-stage {
+  grid-template-columns: minmax(160px, 22%) minmax(0, 78%);
+  margin-top: 30px;
+}
+.day-experience-focused .day-exp-world {
+  min-height: 430px;
+}
+.day-experience-focused .day-island-scene {
+  height: 350px;
+}
+.day-experience-focused .day-island-label {
+  display: none;
+}
+.day-experience-focused .day-exp-timeline {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.day-exp-focus-caption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 305px;
+  text-align: center;
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+}
+.day-exp-focus-caption > span {
+  font-size: 8px;
+  color: var(--day-muted);
+  letter-spacing: 0.16em;
+}
+.day-exp-focus-caption strong {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+.day-exp-focus-caption small {
+  font-size: 10px;
+  color: var(--day-muted);
+}
+.day-exp-focus-caption p {
+  font-size: 10px;
+  color: var(--day-muted);
+  line-height: 1.8;
+  margin-top: 14px;
+}
+.day-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid var(--day-line);
+  padding-bottom: 19px;
+}
+.day-timeline-header .eyebrow {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--day-muted);
+}
+.day-timeline-header h3 {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-top: 8px;
+}
+.day-timeline-header h3 > span {
+  color: var(--day-muted);
+}
+.day-timeline-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8px;
+  padding: 7px 9px;
+  border: 1px solid var(--day-line);
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.day-timeline-status > span {
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.day-timeline-summary {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding-top: 18px;
+  color: var(--day-muted);
+  font-size: 10px;
+}
+.day-timeline-summary > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.day-timeline-disclaimer {
+  color: var(--day-muted);
+  font-size: 9px;
+  line-height: 1.7;
+  margin-top: 12px;
+  margin-bottom: 25px;
+}
+.day-timeline-events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+.day-timeline-event {
+  position: relative;
+  display: grid;
+  grid-template-columns: 65px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+.day-timeline-event:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: -40px;
+  left: 61px;
+  border-left: 1px solid var(--day-line);
+  z-index: 0;
+}
+.day-timeline-time {
+  display: grid;
+  gap: 6px;
+  text-align: right;
+  padding: 21px 13px 0 0;
+  position: relative;
+}
+.day-timeline-time::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--day-paper);
+}
+.day-timeline-time strong {
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.day-timeline-time > span {
+  font-size: 9px;
+  color: var(--day-muted);
+  white-space: nowrap;
+}
+.day-timeline-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--day-line);
+  border-radius: 15px;
+  padding: 12px;
+  min-width: 0;
+  width: 100%;
+  color: var(--day-ink);
+  cursor: pointer;
+  box-shadow: 0 3px 0 #0002;
+  transition:
+    transform 180ms,
+    border-color 180ms,
+    box-shadow 180ms;
+}
+.day-timeline-card:hover,
+.day-timeline-card.is-selected {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 7px 15px #0003;
+}
+.day-timeline-place-art {
+  flex: 0 0 89px;
+  height: 106px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--surface-muted);
+  border-radius: 10px;
+}
+.day-timeline-place-art > svg {
+  z-index: 2;
+  color: var(--primary);
+  filter: drop-shadow(0 5px 1px #0004);
+  transform: translateY(-3px);
+}
+.place-art-cafe {
+  background: var(--surface-muted);
+}
+.place-art-food {
+  background: var(--surface-muted);
+}
+.place-art-culture {
+  background: var(--surface-muted);
+}
+.place-art-outdoors {
+  background: var(--surface-muted);
+}
+.place-art-shop {
+  background: var(--surface-muted);
+}
+.place-art-ground {
+  position: absolute;
+  top: 58%;
+  left: 19%;
+  width: 64%;
+  height: 27%;
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+.place-art-orbit {
+  position: absolute;
+  top: 18%;
+  left: 12%;
+  width: 78%;
+  height: 70%;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  transform: rotate(30deg);
+}
+.place-art-dot {
+  position: absolute;
+  top: 14%;
+  right: 15%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+.day-timeline-card-copy {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  flex: 1;
+}
+.day-timeline-category {
+  font-size: 7px;
+  color: var(--day-muted);
+  letter-spacing: 0.13em;
+}
+.day-timeline-card-copy > strong {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(18px, 1.65vw, 24px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+}
+.day-timeline-description {
+  font-size: 10px;
+  color: var(--day-muted);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.day-timeline-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 8px;
+  color: var(--day-muted);
+}
+.day-timeline-card-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.day-timeline-card-meta > span + span::before {
+  content: "·";
+  margin-right: 4px;
+  color: var(--subtle);
+}
+.day-timeline-card-arrow {
+  align-self: start;
+  color: var(--day-muted);
+  flex-shrink: 0;
+  width: 14px;
+}
+.day-timeline-gap {
+  grid-column: 1 / -1;
+  margin-left: 61px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 26px;
+  color: var(--day-muted);
+  font-size: 8px;
+  padding-left: 16px;
+}
+.day-timeline-gap > span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--subtle);
+}
+.day-timeline-night {
+  margin: 26px 0 0 77px;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  color: var(--day-muted);
+}
+.day-timeline-night > svg {
+  flex-shrink: 0;
+  width: 14px;
+  margin-top: 1px;
+}
+.day-timeline-night strong {
+  font-size: 10px;
+  font-weight: 400;
+}
+.day-timeline-night p {
+  font-size: 9px;
+  color: var(--day-muted);
+  margin-top: 5px;
+  line-height: 1.6;
+}
+.day-timeline-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--day-line);
+  margin-top: 28px;
+  padding-top: 20px;
+  gap: 12px;
+}
+.day-timeline-footer > button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--primary);
+  font-size: 10px;
+  padding: 7px 0;
+  cursor: pointer;
+}
+.day-timeline-footer > button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.day-timeline-footer > span {
+  font-size: 9px;
+  color: var(--day-muted);
+}
+.day-timeline-empty {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+}
+.day-timeline-empty > span {
+  font-size: 40px;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+.day-timeline-empty h4 {
+  font-size: 28px;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-weight: 400;
+}
+.day-timeline-empty p {
+  font-size: 12px;
+  color: var(--day-muted);
+  line-height: 1.8;
+  max-width: 310px;
+  margin-top: 12px;
+}
+.day-timeline-empty small {
+  font-size: 10px;
+  color: var(--day-muted);
+  margin-top: 17px;
+}
+@media (min-width: 1450px) {
+  .day-exp-world,
+  .day-island-scene {
+    min-height: 580px;
+    height: 580px;
+  }
+  .day-experience-focused .day-exp-world {
+    min-height: 500px;
+  }
+  .day-experience-focused .day-island-scene {
+    height: 390px;
+  }
+  .day-exp-focus-caption {
+    top: 340px;
+  }
+}
+@media (max-width: 1100px) {
+  .day-experience-focused .day-exp-stage {
+    grid-template-columns: minmax(125px, 21%) minmax(0, 79%);
+  }
+  .day-timeline-inner {
+    min-width: 0;
+    padding-right: 18px;
+  }
+  .day-timeline-header {
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .day-timeline-status {
+    display: none;
+  }
+  .day-timeline-place-art {
+    flex-basis: 65px;
+    height: 91px;
+  }
+  .day-timeline-card {
+    gap: 10px;
+    padding: 10px;
+  }
+  .day-timeline-description {
+    font-size: 9px;
+  }
+  .day-timeline-category {
+    font-size: 6px;
+  }
+  .day-timeline-event {
+    grid-template-columns: 55px minmax(0, 1fr);
+    gap: 8px;
+  }
+  .day-timeline-time {
+    padding-right: 10px;
+  }
+  .day-timeline-time strong {
+    font-size: 9px;
+  }
+  .day-timeline-event:not(:last-child)::before {
+    left: 51px;
+  }
+  .day-timeline-gap {
+    margin-left: 51px;
+  }
+  .day-timeline-night {
+    margin-left: 63px;
+  }
+  .day-exp-focus-caption strong {
+    font-size: 24px;
+  }
+}
+@media (max-width: 700px) {
+  .day-exp-topline {
+    padding: 18px 20px 0;
+    font-size: 8px;
+  }
+  .day-exp-topline > span:last-child {
+    display: none;
+  }
+  .day-exp-title {
+    padding: 24px 20px 0;
+    gap: 10px;
+    align-items: start;
+  }
+  .day-exp-title h2 {
+    font-size: 32px;
+  }
+  .day-exp-title > div > p:last-child {
+    font-size: 11px;
+  }
+  .day-exp-title .eyebrow {
+    font-size: 8px;
+  }
+  .day-exp-index {
+    padding-top: 20px;
+    font-size: 10px;
+    gap: 7px;
+  }
+  .day-exp-world,
+  .day-island-scene {
+    min-height: 390px;
+    height: 390px;
+  }
+  .day-exp-stage {
+    min-height: 390px;
+  }
+  .day-exp-day-shelf {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    padding: 20px;
+    gap: 8px;
+  }
+  .day-exp-day-card {
+    padding: 13px 10px;
+    gap: 9px;
+  }
+  .day-exp-day-card strong {
+    font-size: 10px;
+  }
+  .day-exp-day-card small {
+    font-size: 8px;
+  }
+  .day-exp-day-number {
+    font-size: 24px;
+  }
+  .day-island-label {
+    min-width: 79px;
+    padding: 7px 9px;
+    border-radius: 9px;
+  }
+  .day-island-label strong {
+    font-size: 10px;
+  }
+  .day-island-label small {
+    font-size: 8px;
+  }
+  .day-island-label > span {
+    font-size: 7px;
+  }
+  .day-experience-focused .day-exp-stage {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 12px;
+  }
+  .day-experience-focused .day-exp-world {
+    min-height: 175px;
+    height: 175px;
+    display: flex;
+    align-items: center;
+  }
+  .day-experience-focused .day-island-scene {
+    flex: 0 0 47%;
+    width: 47%;
+    height: 190px;
+    min-height: 190px;
+  }
+  .day-experience-focused .day-exp-ambient {
+    width: 160px;
+    height: 160px;
+  }
+  .day-exp-focus-caption {
+    position: static;
+    flex: 1;
+    text-align: left;
+    padding-left: 10px;
+    gap: 7px;
+  }
+  .day-exp-focus-caption p {
+    margin-top: 2px;
+    font-size: 9px;
+  }
+  .day-exp-focus-caption strong {
+    font-size: 26px;
+  }
+  .day-exp-back {
+    font-size: 9px;
+    padding: 8px 10px;
+    margin-top: 3px;
+  }
+  .day-experience-focused .day-exp-title h2 {
+    font-size: 26px;
+  }
+  .day-experience-focused .day-exp-title > div > p:last-child {
+    max-width: 240px;
+    font-size: 10px;
+  }
+  .day-exp-timeline {
+    display: none;
+  }
+  .day-experience-focused .day-exp-timeline {
+    display: block;
+  }
+  .day-timeline-inner {
+    padding: 8px 18px 24px;
+  }
+  .day-timeline-header h3 {
+    font-size: 28px;
+  }
+  .day-timeline-header {
+    flex-direction: row;
+    align-items: center;
+  }
+  .day-timeline-header .eyebrow {
+    font-size: 7px;
+    letter-spacing: 0.04em;
+  }
+  .day-timeline-summary {
+    gap: 12px;
+    font-size: 9px;
+    padding-top: 14px;
+  }
+  .day-timeline-summary > span {
+    gap: 5px;
+  }
+  .day-timeline-summary svg {
+    width: 12px;
+  }
+  .day-timeline-disclaimer {
+    font-size: 8px;
+    margin-bottom: 19px;
+  }
+  .day-timeline-card {
+    gap: 10px;
+    padding: 10px;
+  }
+  .day-timeline-place-art {
+    flex-basis: 55px;
+    height: 83px;
+  }
+  .day-timeline-place-art > svg {
+    width: 24px;
+  }
+  .day-timeline-card-copy {
+    gap: 6px;
+  }
+  .day-timeline-card-copy > strong {
+    font-size: 20px;
+  }
+  .day-timeline-card-meta {
+    font-size: 7px;
+    gap: 5px;
+  }
+  .day-timeline-card-meta > span + span::before {
+    margin-right: 1px;
+  }
+  .day-timeline-card-arrow {
+    display: none;
+  }
+  .day-timeline-description {
+    font-size: 8px;
+  }
+  .day-timeline-time {
+    padding-top: 17px;
+  }
+  .day-timeline-time::after {
+    top: 21px;
+  }
+  .day-timeline-time > span {
+    font-size: 8px;
+  }
+  .day-timeline-event {
+    grid-template-columns: 49px minmax(0, 1fr);
+    gap: 7px;
+  }
+  .day-timeline-event:not(:last-child)::before {
+    left: 45px;
+  }
+  .day-timeline-gap {
+    margin-left: 45px;
+    font-size: 7px;
+    gap: 10px;
+    padding-left: 10px;
+  }
+  .day-timeline-night {
+    margin-left: 56px;
+  }
+  .day-timeline-night strong {
+    font-size: 9px;
+  }
+  .day-timeline-night p {
+    font-size: 8px;
+  }
+  .day-timeline-footer {
+    margin-top: 22px;
+  }
+  .day-timeline-footer > button {
+    font-size: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .day-exp-stage,
+  .day-exp-timeline,
+  .day-island-label,
+  .day-exp-day-card,
+  .day-timeline-card {
+    transition: none;
+  }
+  .day-exp-day-card:hover,
+  .day-timeline-card:hover,
+  .day-timeline-card.is-selected {
+    transform: none;
+  }
+}
+.day-timeline-note {
+  border: 1px solid var(--day-line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 0 0 22px 77px;
+  background: var(--surface-muted);
+}
+.day-timeline-note > span {
+  font-size: 7px;
+  letter-spacing: 0.13em;
+  color: var(--day-muted);
+}
+.day-timeline-note p {
+  color: var(--day-muted);
+  font-size: 11px;
+  line-height: 1.7;
+  margin-top: 7px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  .day-timeline-note {
+    margin-left: 56px;
+    padding: 12px;
+  }
+  .day-timeline-note p {
+    font-size: 10px;
+  }
+}
+
+/* Readability pass: dates, provenance, times, caveats and duration remain legible
+   at every width; decorative eyebrows are secondary to the actual day plan. */
+.day-exp-topline > span:last-child,
+.day-exp-title > div > p:last-child,
+.day-exp-world-note,
+.day-island-label small,
+.day-exp-focus-caption small,
+.day-exp-focus-caption p,
+.day-exp-day-card small,
+.day-timeline-header .eyebrow,
+.day-timeline-status,
+.day-timeline-summary,
+.day-timeline-disclaimer,
+.day-timeline-description,
+.day-timeline-card-meta,
+.day-timeline-time > span,
+.day-timeline-gap,
+.day-timeline-night p,
+.day-timeline-footer > span,
+.day-timeline-note p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.day-exp-day-card strong,
+.day-island-label strong,
+.day-timeline-time strong,
+.day-timeline-night strong,
+.day-timeline-footer > button,
+.day-exp-back {
+  font-size: 13px;
+  color: var(--day-ink);
+}
+.day-timeline-category {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.day-exp-day-card {
+  padding: 16px 13px;
+}
+.day-timeline-card-meta {
+  gap: 6px 10px;
+}
+.day-timeline-card-copy {
+  gap: 8px;
+}
+.day-timeline-note > span {
+  font-size: 10px;
+  color: var(--muted);
+}
+.day-timeline-gap {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.day-timeline-time {
+  padding-right: 13px;
+}
+.day-timeline-event {
+  grid-template-columns: 75px minmax(0, 1fr);
+  gap: 12px;
+}
+.day-timeline-event:not(:last-child)::before {
+  left: 71px;
+}
+.day-timeline-gap {
+  margin-left: 71px;
+}
+.day-timeline-night,
+.day-timeline-note {
+  margin-left: 87px;
+}
+.day-timeline-header .eyebrow {
+  letter-spacing: 0;
+}
+.day-island-label {
+  min-width: 108px;
+  max-width: 140px;
+}
+.day-timeline-time strong {
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .day-exp-title > div > p:last-child,
+  .day-experience-focused .day-exp-title > div > p:last-child {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .day-timeline-card {
+    align-items: flex-start;
+  }
+  .day-timeline-place-art {
+    flex-basis: 45px;
+    height: 66px;
+  }
+  .day-timeline-description {
+    -webkit-line-clamp: 3;
+  }
+  .day-timeline-card-copy > strong {
+    font-size: 22px;
+  }
+  .day-timeline-card-meta > span:nth-child(2) {
+    flex-basis: 100%;
+  }
+  .day-timeline-card-meta > span:nth-child(2)::before {
+    display: none;
+  }
+  .day-timeline-time > span {
+    font-size: 11px;
+  }
+  .day-timeline-event {
+    grid-template-columns: 66px minmax(0, 1fr);
+    gap: 9px;
+  }
+  .day-timeline-event:not(:last-child)::before {
+    left: 62px;
+  }
+  .day-timeline-gap {
+    margin-left: 62px;
+  }
+  .day-timeline-night,
+  .day-timeline-note {
+    margin-left: 75px;
+  }
+  .day-exp-day-shelf {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .day-exp-day-card {
+    min-height: 74px;
+  }
+  .day-island-label {
+    min-width: 84px;
+    max-width: 112px;
+    padding: 8px;
+  }
+  .day-island-label small {
+    display: none;
+  }
+  .day-island-label strong {
+    font-size: 12px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+/* Viewport composition: keep the complete day path visible on a laptop. */
+.day-experience {
+  --overview-height: clamp(300px, calc(100svh - 380px), 430px);
+}
+.day-experience:not(.day-experience-focused) .day-exp-topline {
+  padding: 12px 28px 0;
+}
+.day-experience:not(.day-experience-focused) .day-exp-title {
+  padding: 10px 28px 0;
+}
+.day-experience:not(.day-experience-focused) .day-exp-title .eyebrow {
+  display: none;
+}
+.day-experience:not(.day-experience-focused) .day-exp-title h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  margin: 4px 0 7px;
+}
+.day-experience:not(.day-experience-focused) .day-exp-index {
+  padding-top: 8px;
+}
+.day-experience:not(.day-experience-focused) .day-exp-stage,
+.day-experience:not(.day-experience-focused) .day-exp-world,
+.day-experience:not(.day-experience-focused) .day-island-scene {
+  min-height: var(--overview-height);
+  height: var(--overview-height);
+}
+.day-experience:not(.day-experience-focused) .day-exp-day-shelf {
+  padding: 14px 28px 22px;
+}
+.day-experience-focused .day-exp-topline {
+  display: none;
+}
+.day-experience-focused .day-exp-title {
+  padding: 20px 28px;
+  align-items: center;
+  border-bottom: 1px solid var(--day-line);
+}
+.day-experience-focused .day-exp-title .eyebrow,
+.day-experience-focused .day-exp-title > div > p:last-child {
+  display: none;
+}
+.day-experience-focused .day-exp-title h2 {
+  font-size: 28px;
+  margin: 0;
+}
+.day-exp-back,
+.day-timeline-footer button {
+  min-height: 44px;
+}
+.day-timeline-description {
+  -webkit-line-clamp: 2;
+}
+@media (max-width: 700px) {
+  .day-experience {
+    --overview-height: 330px;
+  }
+  .day-experience:not(.day-experience-focused) .day-exp-title {
+    padding-inline: 16px;
+  }
+  .day-experience:not(.day-experience-focused) .day-exp-topline {
+    padding-inline: 16px;
+  }
+  .day-experience:not(.day-experience-focused) .day-exp-day-shelf {
+    padding: 12px 16px 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .day-exp-day-card {
+    padding: 12px 9px;
+    gap: 8px;
+  }
+  .day-exp-day-card strong,
+  .day-exp-day-card small {
+    font-size: 12px;
+  }
+  .day-experience-focused .day-exp-title {
+    padding: 16px;
+  }
+  .day-experience-focused .day-exp-title h2 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 700px) {
+  .day-experience:not(.day-experience-focused) .day-island-label {
+    min-width: 60px;
+    max-width: 70px;
+    padding: 8px 6px;
+  }
+  .day-experience:not(.day-experience-focused) .day-island-label > span {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--day-ink);
+  }
+  .day-experience:not(.day-experience-focused) .day-island-label strong {
+    display: none;
+  }
+}
+.day-exp-pages {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Day selection stays within reach while the complete schedule remains open. */
+.day-experience {
+  container-type: inline-size;
+  container-name: day-planner;
+}
+.day-exp-day-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 14px 28px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: 28px;
+  border-bottom: 1px solid var(--day-line);
+}
+.day-exp-nav-label {
+  flex: 0 0 auto;
+  margin-right: 8px;
+  color: var(--day-muted);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.day-exp-day-nav > button {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 4px;
+  min-width: 66px;
+  min-height: 54px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--day-muted);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 180ms,
+    border-color 180ms;
+}
+.day-exp-day-nav > button > span:first-child {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.day-exp-day-nav > button > span:last-child {
+  max-width: 115px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+}
+.day-exp-day-nav > button:hover {
+  background: var(--surface-muted);
+}
+.day-exp-day-nav > button[aria-current="step"] {
+  color: var(--day-ink);
+  border-color: var(--primary);
+  background: var(--accent-muted);
+}
+.day-exp-day-card[aria-current="step"],
+.day-island-label[aria-current="step"] {
+  border-color: var(--primary);
+  background: var(--accent-muted);
+}
+.day-exp-day-card[aria-current="step"] .day-exp-day-number {
+  color: var(--primary);
+}
+.day-exp-day-nav > button:focus-visible,
+.day-exp-day-card:focus-visible,
+.day-island-label:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.day-timeline-inner {
+  min-width: 0;
+}
+.day-experience-focused .day-timeline-inner {
+  animation: day-schedule-arrive 260ms ease-out both;
+}
+.day-island-scene.is-focused .day-scene-fallback {
+  min-height: 0;
+  padding: 16px;
+  gap: 8px;
+}
+.day-island-scene.is-focused .day-scene-fallback > span {
+  font-size: 32px;
+}
+.day-island-scene.is-focused .day-scene-fallback p {
+  font-size: 20px;
+}
+.day-island-scene.is-focused .day-scene-fallback small {
+  font-size: 11px;
+  line-height: 1.5;
+}
+@keyframes day-schedule-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@container day-planner (max-width: 700px) {
+  .day-exp-day-nav {
+    padding: 12px 16px;
+    scroll-padding-inline: 16px;
+  }
+  .day-exp-nav-label {
+    display: none;
+  }
+  .day-experience-focused .day-exp-stage {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 8px;
+  }
+  .day-experience-focused .day-exp-world {
+    display: flex;
+    align-items: center;
+    min-height: 170px;
+    height: 170px;
+  }
+  .day-experience-focused .day-island-scene {
+    flex: 0 0 42%;
+    width: 42%;
+    height: 170px;
+    min-height: 170px;
+  }
+  .day-experience-focused .day-exp-focus-caption {
+    position: static;
+    flex: 1;
+    padding: 10px 16px 10px 4px;
+    text-align: left;
+  }
+  .day-experience-focused .day-exp-focus-caption strong {
+    font-size: 26px;
+    overflow-wrap: anywhere;
+  }
+  .day-experience-focused .day-exp-focus-caption p {
+    margin-top: 0;
+  }
+  .day-timeline-inner {
+    padding: 8px 16px 24px;
+  }
+  .day-timeline-header {
+    flex-wrap: wrap;
+  }
+  .day-timeline-header h3 {
+    font-size: 28px;
+  }
+  .day-timeline-tools {
+    flex-wrap: wrap;
+  }
+  .day-timeline-place-art {
+    flex-basis: 45px;
+    height: 66px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .day-experience-focused .day-timeline-inner {
+    animation: none;
+  }
+  .day-exp-day-nav > button {
+    transition: none;
+  }
+}

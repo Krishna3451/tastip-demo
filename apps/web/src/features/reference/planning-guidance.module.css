@@ -1,0 +1,127 @@
+.hint {
+  margin: -8px 0 20px;
+  padding: 12px 14px;
+  border-left: 2px solid currentColor;
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  color: inherit;
+  font-size: 12px;
+  line-height: 1.65;
+  text-align: left;
+}
+.starters {
+  display: grid;
+  gap: 8px;
+  margin-top: 22px;
+}
+.starters > p {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+.starters > button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, currentColor 3%, transparent);
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms;
+}
+.starters > button:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+.starters > button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.starters > button > svg {
+  flex: 0 0 auto;
+  opacity: 0.65;
+}
+.guide {
+  padding: 16px 0;
+  margin: 0 0 20px;
+  border-block: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+.guide > h2 {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.steps > li {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding-top: 9px;
+  border-top: 2px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+.steps > li[aria-current="step"] {
+  border-top-color: currentColor;
+}
+.steps strong {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.steps span {
+  font-size: 11px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+.cityResponses {
+  display: grid;
+  gap: 8px;
+  padding: 14px 0 0;
+  margin: 14px 0 0;
+  list-style: none;
+  border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+.cityResponses > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.cityResponses strong {
+  font-weight: 500;
+}
+.cityResponses span {
+  text-align: right;
+  opacity: 0.75;
+}
+@media (max-width: 600px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .cityResponses > li {
+    flex-wrap: wrap;
+    gap: 2px 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .starters > button {
+    transition: none;
+  }
+}

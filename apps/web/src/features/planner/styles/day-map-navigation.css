@@ -1,0 +1,45 @@
+.map-day-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.map-day-navigation > div {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.map-day-navigation strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.map-day-navigation small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.map-day-navigation .button {
+  white-space: normal;
+  font-size: 12px;
+}
+.map-city-caption {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 12px 0 20px;
+}
+@media (max-width: 700px) {
+  .day-timeline-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .day-timeline-tools {
+    justify-content: flex-start;
+  }
+}

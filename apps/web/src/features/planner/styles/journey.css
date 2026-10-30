@@ -1,0 +1,386 @@
+.plan-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: oklch(0.971 0.013 112);
+}
+.plan-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  gap: 14px;
+}
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  overflow: auto;
+  padding: 3px;
+}
+.day-tabs button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  min-width: 60px;
+  height: 36px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.day-tabs button.selected {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.day-tabs button:hover:not(.selected) {
+  border-color: var(--border);
+}
+.view-switch {
+  display: flex;
+  border: 1px solid var(--border);
+  padding: 3px;
+  border-radius: 9px;
+  flex: none;
+}
+.view-switch button {
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  padding: 8px 10px;
+  min-height: 32px;
+}
+.view-switch button.selected {
+  background: var(--surface);
+  box-shadow: 0 1px 4px #30493110;
+}
+.journey-scene {
+  position: relative;
+  min-height: 490px;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.journey-heading {
+  text-align: center;
+  padding: 25px 20px 0;
+  position: relative;
+  z-index: 2;
+}
+.journey-heading .eyebrow {
+  justify-content: center;
+  font-size: 8px;
+}
+.journey-heading > p {
+  font-family: var(--font-display);
+  font-size: 32px;
+  margin-top: 10px;
+  letter-spacing: -0.5px;
+}
+.journey-cloud {
+  position: absolute;
+  width: 110px;
+  height: 28px;
+  background: var(--surface);
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 0;
+}
+.journey-cloud::before,
+.journey-cloud::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  width: 43px;
+  height: 34px;
+  background: inherit;
+  border-radius: 50%;
+}
+.journey-cloud::before {
+  left: 12px;
+}
+.journey-cloud::after {
+  right: 17px;
+  bottom: 12px;
+}
+.cloud-one {
+  top: 152px;
+  right: 8%;
+  transform: scale(0.85);
+}
+.cloud-two {
+  left: 9%;
+  bottom: 80px;
+  transform: scale(0.65);
+}
+.island-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 370px;
+  padding: 25px 20px 55px;
+  flex: 1;
+}
+.journey-connector {
+  position: absolute;
+  left: 7%;
+  top: 0;
+  width: 85%;
+  height: 100%;
+  color: oklch(0.75 0.06 115);
+  pointer-events: none;
+  opacity: 0.7;
+}
+.island-stop {
+  width: 29%;
+  max-width: 250px;
+  min-width: 135px;
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  border-radius: 20px;
+}
+.island-stop::after {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 42px;
+  bottom: 8px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  transition:
+    border-color 0.18s,
+    background-color 0.18s;
+  z-index: -1;
+}
+.island-stop:hover::after,
+.island-stop.selected::after {
+  border-color: var(--border);
+  background: oklch(0.99 0.01 100 / 0.7);
+}
+.island-stop-0 {
+  transform: translateY(22px);
+}
+.island-stop-1 {
+  transform: translateY(-41px);
+}
+.island-stop-2 {
+  transform: translateY(20px);
+}
+.island-art {
+  width: 100%;
+  max-height: 170px;
+  transition: transform 0.2s ease-out;
+}
+.island-stop:hover .island-art {
+  transform: translateY(-4px);
+}
+.island-art-1 {
+  --island-top: #e4d1b1;
+  --island-side: #bea98b;
+  --island-path: #f4e5c5;
+  --house-roof: #8d9c93;
+  --tree-leaf: #a7b696;
+}
+.island-art-2 {
+  --island-top: #cdd7b8;
+  --island-side: #a9b493;
+  --house-roof: #c17e59;
+  --tree-leaf: #94a881;
+}
+.island-time {
+  font-size: 10px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  margin-bottom: -10px;
+  z-index: 2;
+}
+.island-number {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin-top: -18px;
+  position: relative;
+  z-index: 2;
+}
+.island-stop strong {
+  font-size: 11px;
+  font-weight: 550;
+  max-width: 90%;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.island-category {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 5px;
+  text-transform: capitalize;
+}
+.island-category > svg:last-child {
+  margin-left: 4px;
+}
+.scene-note {
+  font-size: 8px;
+  text-align: center;
+  color: var(--muted);
+  padding: 0 16px 25px;
+  position: relative;
+  z-index: 2;
+  line-height: 1.6;
+}
+.plan-summary {
+  margin-top: auto;
+  padding: 19px 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  color: var(--muted);
+}
+.plan-summary > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.plan-summary .tiny-star {
+  font-size: 17px;
+}
+.empty-day {
+  padding: 70px 20px;
+  text-align: center;
+  max-width: 300px;
+  margin: auto;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.empty-day > svg {
+  margin-bottom: 10px;
+}
+.empty-day h3 {
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--foreground);
+  margin-bottom: 10px;
+}
+.empty-day p {
+  font-size: 12px;
+}
+.itinerary-list {
+  padding: 25px 30px 45px;
+  flex: 1;
+}
+.list-intro {
+  margin: 0 0 30px;
+}
+.list-intro h2 {
+  font-size: 32px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+.list-intro p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+}
+.itinerary-row {
+  width: 100%;
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 16px;
+  margin-top: 12px;
+}
+.itinerary-row:hover,
+.itinerary-row.selected {
+  border-color: var(--primary);
+}
+.visit-time {
+  font-size: 10px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 35px;
+}
+.place-tile {
+  height: 55px;
+  width: 55px;
+  min-width: 55px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  background: var(--surface-muted);
+}
+.category-cafe {
+  background: oklch(0.92 0.037 70);
+  color: oklch(0.4 0.065 60);
+}
+.category-culture {
+  background: oklch(0.91 0.026 240);
+  color: oklch(0.4 0.045 240);
+}
+.category-food {
+  background: oklch(0.91 0.037 45);
+  color: oklch(0.45 0.1 45);
+}
+.category-outdoors {
+  background: oklch(0.91 0.04 130);
+  color: oklch(0.4 0.06 130);
+}
+.category-shop {
+  background: oklch(0.92 0.025 305);
+  color: oklch(0.43 0.05 305);
+}
+.visit-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.visit-copy small {
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.visit-copy strong {
+  font-size: 12px;
+  font-weight: 550;
+}
+.visit-copy > span {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.itinerary-row > svg:last-child {
+  margin-left: auto;
+  color: var(--muted);
+}

@@ -1,0 +1,358 @@
+.sample-trip-button {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.sample-trip-button > span {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.taste-dialog {
+  margin: auto;
+  width: min(720px, calc(100vw - 32px));
+  max-height: calc(100svh - 32px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--background);
+  color: var(--foreground);
+  box-shadow: 0 40px 140px #16372836;
+  overflow: auto;
+}
+.taste-dialog::backdrop {
+  background: #020711b3;
+  backdrop-filter: blur(12px);
+}
+.studio-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px 0;
+}
+.studio-wordmark {
+  font-size: 25px;
+  letter-spacing: -1.3px;
+  font-weight: 650;
+}
+.studio-wordmark > span {
+  color: var(--accent);
+  margin-left: 4px;
+  font-size: 20px;
+}
+.taste-studio {
+  max-width: none;
+  margin: 0;
+  border: 0;
+  padding: 20px 64px 48px;
+}
+.studio-progress {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 40px;
+}
+.studio-progress > span {
+  flex: 1;
+  border-top: 2px solid var(--border);
+  padding-top: 12px;
+  color: var(--subtle);
+  font-size: 10px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.studio-progress > span.active {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.studio-progress b {
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.taste-studio .studio-title {
+  font-family: var(--font-display);
+  font-size: 58px;
+  line-height: 1.03;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  margin: 15px 0 18px;
+  outline: none;
+}
+.studio-title em {
+  font-weight: 400;
+  color: var(--accent);
+}
+.taste-studio > .studio-description {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 470px;
+  margin-bottom: 24px;
+}
+.culture-hints {
+  display: flex;
+  gap: 20px;
+  margin: 24px 0;
+  color: var(--muted);
+}
+.culture-hints > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.taste-studio .taste-search {
+  border-radius: 14px;
+  margin: 18px 0 12px;
+  padding: 3px 8px;
+  box-shadow: 0 4px 18px #314d3905;
+}
+.taste-studio .taste-search input {
+  font-size: 14px;
+  padding: 16px 10px;
+}
+.taste-studio .taste-results strong {
+  font-size: 13px;
+}
+.taste-studio .taste-results small {
+  font-size: 10px;
+}
+.taste-studio .taste-results > button {
+  padding: 13px 12px;
+}
+.taste-studio .taste-results > button:hover {
+  background: var(--surface-muted);
+}
+.taste-studio .selected-seeds button {
+  font-size: 12px;
+  padding: 10px 13px;
+  background: var(--surface);
+}
+.taste-studio .selected-seeds button:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.day-style-options {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+.day-style-options > button {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 16px;
+  font-size: 13px;
+  min-height: 66px;
+}
+.day-style-options > button:hover,
+.day-style-options > button[aria-pressed="true"] {
+  border-color: var(--primary);
+  background: var(--surface-muted);
+}
+.choice-circle {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+[aria-pressed="true"] > .choice-circle {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.taste-receipt {
+  padding: 24px;
+  margin: 24px 0;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--surface), var(--surface-muted));
+}
+.taste-receipt > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.taste-receipt > strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 20px 0 12px;
+}
+.taste-receipt p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.studio-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.studio-actions > .button-primary {
+  flex: 1;
+  justify-content: space-between;
+}
+.taste-studio .studio-actions .button {
+  min-height: 50px;
+  border-radius: 12px;
+}
+.taste-studio > .taste-footnote {
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: 16px;
+  color: var(--muted);
+}
+.taste-feedback {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 20px 0;
+}
+.taste-feedback > strong {
+  font-size: 12px;
+  font-weight: 550;
+}
+.taste-feedback > div {
+  display: flex;
+  gap: 7px;
+  margin: 12px 0;
+}
+.taste-feedback button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  min-height: 40px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
+  font-size: 10px;
+}
+.taste-feedback button[aria-pressed="true"] {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.taste-feedback > p,
+.detail-callout .taste-evidence {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.detail-callout .taste-evidence {
+  margin-top: 10px;
+}
+.taste-evidence small {
+  font-size: 9px;
+}
+.journey-canvas-wrap {
+  width: 100%;
+  height: 390px;
+  position: relative;
+}
+.journey-visit-controls {
+  display: flex;
+  gap: 9px;
+  padding: 0 25px 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.journey-visit-controls button {
+  min-width: 130px;
+  max-width: 220px;
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-align: left;
+  font-size: 11px;
+  box-shadow: 0 5px 15px #203a2705;
+}
+.journey-visit-controls button[aria-pressed="true"] {
+  border-color: var(--primary);
+  background: var(--surface-muted);
+}
+.journey-visit-controls small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  margin-bottom: 5px;
+}
+.journey-visit-controls strong {
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 1.5;
+}
+@media (max-width: 620px) {
+  .taste-dialog {
+    width: calc(100vw - 16px);
+    max-height: calc(100svh - 16px);
+    border-radius: 22px;
+  }
+  .studio-top {
+    padding: 16px 18px 0;
+  }
+  .taste-studio {
+    padding: 12px 22px 28px;
+  }
+  .studio-progress {
+    margin-bottom: 28px;
+    gap: 7px;
+  }
+  .studio-progress > span {
+    font-size: 8px;
+    gap: 4px;
+  }
+  .taste-studio .studio-title {
+    font-size: 44px;
+  }
+  .taste-studio > .studio-description {
+    font-size: 12px;
+  }
+  .culture-hints {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .journey-canvas-wrap {
+    height: 330px;
+  }
+  .journey-visit-controls {
+    padding: 0 18px 20px;
+  }
+  .refine-taste-button {
+    font-size: 11px;
+    padding: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .taste-dialog::backdrop {
+    backdrop-filter: none;
+  }
+}

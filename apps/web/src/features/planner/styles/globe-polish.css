@@ -1,0 +1,221 @@
+.world-stage {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  height: min(760px, calc(100svh - 130px));
+  min-height: 550px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 46% 45%, #295358 0%, #173a40 40%, #102a30 78%);
+  border-radius: 28px;
+  isolation: isolate;
+  color: #e7e8da;
+  box-shadow: inset 0 0 90px #051a2445;
+}
+.world-stage::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid #a6c8bf16;
+  border-radius: 50%;
+  transform: rotate(-25deg) scaleX(1.2);
+  pointer-events: none;
+}
+.world-stage::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  top: 48%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c3d8c51c, transparent);
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+.premium-globe {
+  position: absolute;
+  inset: 4% -6% 5%;
+  width: 112%;
+  height: 91%;
+  z-index: 1;
+}
+.premium-globe canvas {
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+}
+.world-stage-heading {
+  position: absolute;
+  top: 28px;
+  left: 30px;
+  right: 24px;
+  color: #dde2d4;
+  font-size: 12px;
+  letter-spacing: 0.025em;
+  z-index: 2;
+}
+.world-stage .tiny-star {
+  color: #cbb991;
+}
+.world-stage .destination-coordinate {
+  color: #e3e7d8;
+  z-index: 2;
+  left: 28px;
+  bottom: 55px;
+}
+.world-stage .destination-coordinate > span {
+  color: #bfd0c5;
+  font-size: 10px;
+}
+.world-stage .destination-coordinate > div {
+  background: #0e282be6;
+  border-color: #abc8b632;
+  box-shadow: 0 12px 40px #001a1e30;
+}
+.world-stage .destination-coordinate strong {
+  color: #edf0e0;
+}
+.world-stage .destination-coordinate small {
+  color: #b0c5ba;
+}
+.world-stage .location-pin {
+  background: #385a50;
+  color: #e3dfc7;
+}
+.world-stage .destination-stamp {
+  color: #bdc5ad;
+  border-color: #9fb4a137;
+}
+.world-stage .globe-help {
+  color: #b7c9bf;
+  z-index: 2;
+  bottom: 22px;
+  font-size: 11px;
+}
+.world-stage-corner {
+  color: #bbcfbd83;
+  z-index: 2;
+}
+.earth-fallback {
+  position: absolute;
+  inset: 18%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 14px;
+}
+.earth-fallback > div {
+  width: 240px;
+  max-width: 70vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #dbe0c6, #7ca39b 40%, #163e45 73%);
+  box-shadow:
+    inset -30px -20px 50px #071c2866,
+    0 0 60px #a3c8b41a;
+}
+.earth-fallback span {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 32px;
+}
+.earth-fallback small {
+  font-size: 12px;
+  color: #cad6cb;
+  max-width: 260px;
+  line-height: 1.6;
+}
+@media (max-width: 1050px) {
+  .world-stage {
+    min-height: 460px;
+    height: 60vw;
+    max-height: 640px;
+    top: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .world-stage {
+    position: relative;
+    top: auto;
+    height: 440px;
+    min-height: 400px;
+    border-radius: 22px;
+  }
+  .world-stage-heading {
+    top: 22px;
+    left: 22px;
+  }
+  .world-stage .destination-coordinate {
+    left: 20px;
+    bottom: 45px;
+  }
+  .world-stage .globe-help {
+    bottom: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-stage,
+  .premium-globe {
+    scroll-behavior: auto;
+  }
+}
+.world-stage .destination-coordinate {
+  transform: none;
+  width: min(285px, calc(100% - 56px));
+}
+.world-stage-heading {
+  width: auto;
+  justify-content: flex-start;
+}
+.world-stage::before {
+  width: auto;
+  aspect-ratio: auto;
+}
+.world-stage::after {
+  width: auto;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+}
+.world-stage {
+  width: 100%;
+}
+@media (max-width: 620px) {
+  .world-stage {
+    height: 300px;
+    min-height: 300px;
+    border-radius: 0 0 24px 24px;
+  }
+  .premium-globe {
+    inset: 2% -6% 4%;
+    height: 94%;
+  }
+  .world-stage .destination-coordinate {
+    width: 215px;
+    left: 18px;
+    bottom: 40px;
+  }
+  .world-stage-heading {
+    top: 17px;
+    left: 18px;
+    font-size: 11px;
+  }
+  .world-stage .globe-help {
+    font-size: 10px;
+    bottom: 14px;
+  }
+  .world-stage .destination-coordinate > span {
+    display: none;
+  }
+  .entry-content {
+    padding-top: 28px;
+  }
+  .entry-content h1 {
+    font-size: 52px;
+    letter-spacing: -1.8px;
+  }
+}
+@media (max-width: 620px) {
+  .world-stage-heading {
+    display: none;
+  }
+}

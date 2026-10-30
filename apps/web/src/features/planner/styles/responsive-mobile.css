@@ -1,0 +1,444 @@
+@media (max-width: 620px) {
+  .topbar {
+    height: 70px;
+    padding-inline: 20px;
+  }
+  .wordmark {
+    font-size: 29px;
+  }
+  .topbar nav {
+    gap: 10px;
+  }
+  .sample-badge {
+    font-size: 9px;
+    padding: 6px 9px;
+  }
+  .topbar .button-quiet {
+    font-size: 0;
+    gap: 0;
+    width: 38px;
+    padding: 0;
+    min-height: 38px;
+  }
+  .topbar .button-quiet > svg {
+    width: 16px;
+  }
+  .entry-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .entry-content {
+    padding: 37px 24px 27px;
+    order: 1;
+  }
+  .entry-content h1 {
+    font-size: 66px;
+    letter-spacing: -2.5px;
+    margin-top: 20px;
+  }
+  .entry-content h1 br {
+    display: none;
+  }
+  .entry-description {
+    font-size: 13px;
+    max-width: 300px;
+    margin-top: 18px;
+  }
+  .entry-description br {
+    display: none;
+  }
+  .entry-content .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.2px;
+  }
+  .trip-brief {
+    margin-top: 25px;
+    max-width: none;
+  }
+  .destination-field {
+    padding: 14px 16px;
+  }
+  .select-wrap select {
+    font-size: 16px;
+  }
+  .brief-details {
+    grid-template-columns: 0.8fr 0.9fr 1.4fr;
+    gap: 15px;
+    padding-block: 17px;
+  }
+  .brief-details select,
+  .brief-details input {
+    font-size: 12px;
+  }
+  .interest-chips button {
+    font-size: 10px;
+    min-height: 40px;
+    padding-inline: 11px;
+  }
+  .create-trip {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+  .sample-explanation {
+    font-size: 9px;
+    line-height: 1.7;
+  }
+  .world-stage {
+    height: 350px;
+    min-height: 350px;
+    order: 0;
+    border-radius: 0 0 45px 45px;
+  }
+  .world-stage-heading {
+    top: 23px;
+    font-size: 9px;
+  }
+  .world-stage::before {
+    width: 70%;
+    top: 45px;
+  }
+  .world-stage::after {
+    width: 85%;
+    top: 15px;
+  }
+  .globe-viewport {
+    inset: 15px -10px 23px;
+  }
+  .destination-coordinate {
+    bottom: 37px;
+    width: 210px;
+  }
+  .destination-coordinate > span {
+    font-size: 7px;
+    letter-spacing: 1.2px;
+    margin-bottom: 9px;
+  }
+  .destination-coordinate > div {
+    padding: 10px 12px;
+    gap: 8px;
+    border-radius: 12px;
+  }
+  .destination-coordinate strong {
+    font-size: 12px;
+  }
+  .destination-coordinate small {
+    font-size: 8px;
+  }
+  .location-pin {
+    width: 28px;
+    height: 28px;
+  }
+  .destination-stamp {
+    font-size: 5px;
+    width: 45px;
+    height: 35px;
+    letter-spacing: 1px;
+  }
+  .globe-help {
+    bottom: 14px;
+    font-size: 8px;
+  }
+  .entry-bottom {
+    padding: 20px 24px;
+    display: block;
+    border-top: 1px solid var(--border);
+  }
+  .entry-bottom > p {
+    font-size: 23px;
+  }
+  .entry-bottom > .button {
+    padding: 11px 0;
+    margin-top: 10px;
+    font-size: 11px;
+  }
+  .entry-chat {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    max-height: 90svh;
+  }
+  .planner-titlebar {
+    min-height: 100px;
+    padding: 19px 20px;
+    align-items: flex-start;
+  }
+  .planner-titlebar > div:first-child {
+    gap: 10px;
+  }
+  .back-button {
+    width: 32px;
+    height: 32px;
+    margin-top: 7px;
+    flex: none;
+  }
+  .planner-titlebar h1 {
+    font-size: 29px;
+    max-width: 230px;
+    line-height: 1.12;
+  }
+  .planner-titlebar .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1.2px;
+  }
+  .trip-meta {
+    padding-top: 6px;
+  }
+  .trip-meta > .button {
+    font-size: 0;
+    gap: 0;
+    width: 37px;
+    height: 37px;
+    min-height: 37px;
+    padding: 0;
+  }
+  .trip-meta > .button > svg {
+    width: 15px;
+  }
+  .planning-workspace,
+  .planning-workspace.with-detail {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .workspace-chat {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid var(--border);
+  }
+  .planning-workspace.with-detail .workspace-chat {
+    display: block;
+  }
+  .workspace-chat .chat-panel {
+    min-height: 410px;
+    padding: 22px 24px;
+  }
+  .conversation {
+    max-height: 330px;
+  }
+  .chat-panel-heading strong {
+    font-size: 12px;
+  }
+  .chat-panel-heading small {
+    font-size: 10px;
+  }
+  .assistant-message {
+    font-size: 12px;
+  }
+  .conversation-note {
+    font-size: 10px;
+  }
+  .chat-disclosure {
+    font-size: 9px;
+  }
+  .chat-composer textarea {
+    font-size: 12px;
+  }
+  .voice-button {
+    font-size: 10px;
+    min-height: 40px;
+  }
+  .send-button {
+    height: 38px;
+    width: 38px;
+  }
+  .plan-main {
+    order: 0;
+  }
+  .plan-toolbar,
+  .with-detail .plan-toolbar {
+    padding: 20px 18px;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  .day-tabs {
+    gap: 3px;
+    max-width: calc(100vw - 150px);
+  }
+  .day-tabs button {
+    min-width: 51px;
+    font-size: 10px;
+    height: 40px;
+  }
+  .view-switch button {
+    font-size: 9px;
+    gap: 4px;
+    min-height: 35px;
+    padding-inline: 6px;
+  }
+  .view-switch button span {
+    display: none;
+  }
+  .view-switch button svg {
+    width: 17px;
+  }
+  .journey-scene,
+  .with-detail .journey-scene {
+    min-height: 630px;
+  }
+  .journey-heading,
+  .with-detail .journey-heading {
+    padding: 6px 20px 0;
+  }
+  .journey-heading > p,
+  .with-detail .journey-heading > p {
+    font-size: 32px;
+    line-height: 1.2;
+    max-width: 270px;
+    margin: 12px auto 0;
+  }
+  .journey-heading .eyebrow {
+    font-size: 7px;
+  }
+  .island-track,
+  .with-detail .island-track {
+    padding: 20px 12px 40px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    min-height: 430px;
+    gap: 0;
+    align-content: center;
+  }
+  .island-stop,
+  .with-detail .island-stop {
+    width: 45%;
+    max-width: 200px;
+    min-width: 140px;
+    margin: 0;
+  }
+  .island-stop-0,
+  .with-detail .island-stop-0 {
+    transform: translateY(23px);
+    margin-right: 0;
+  }
+  .island-stop-1,
+  .with-detail .island-stop-1 {
+    transform: translateY(-37px);
+    margin-left: 0;
+  }
+  .island-stop-2,
+  .with-detail .island-stop-2 {
+    transform: translateY(-12px);
+    margin-top: 22px;
+    margin-right: 0;
+  }
+  .island-art,
+  .with-detail .island-art {
+    max-height: 150px;
+  }
+  .island-stop strong,
+  .with-detail .island-stop strong {
+    font-size: 10px;
+  }
+  .island-time,
+  .with-detail .island-time {
+    margin-bottom: -7px;
+  }
+  .island-category {
+    font-size: 8px;
+  }
+  .journey-connector {
+    display: none;
+  }
+  .scene-note {
+    font-size: 8px;
+    padding-bottom: 20px;
+    max-width: 300px;
+    margin-inline: auto;
+  }
+  .plan-summary {
+    padding: 17px 24px;
+    gap: 10px;
+    font-size: 8px;
+  }
+  .stop-detail {
+    order: 1;
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding: 20px 24px 28px;
+  }
+  .detail-art {
+    height: 170px;
+  }
+  .detail-toolbar .eyebrow {
+    font-size: 9px;
+  }
+  .stop-detail h2 {
+    font-size: 36px;
+  }
+  .detail-category {
+    font-size: 11px;
+  }
+  .detail-description {
+    font-size: 12px;
+  }
+  .detail-callout {
+    padding: 15px;
+  }
+  .detail-callout strong {
+    font-size: 11px;
+  }
+  .detail-callout p {
+    font-size: 10px;
+  }
+  .detail-facts {
+    font-size: 11px;
+  }
+  .detail-facts strong {
+    font-size: 10px;
+  }
+  .field-pair label {
+    font-size: 11px;
+  }
+  .field-pair select,
+  .field-pair input {
+    height: 44px;
+    font-size: 13px;
+  }
+  .visit-edit-form > .button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  .detail-action {
+    min-height: 46px;
+    font-size: 12px;
+  }
+  .detail-footnote {
+    font-size: 9px;
+  }
+  .itinerary-list {
+    padding: 15px 22px 30px;
+  }
+  .list-intro h2 {
+    font-size: 32px;
+  }
+  .list-intro p {
+    font-size: 11px;
+  }
+  .itinerary-row {
+    padding: 15px 12px;
+    gap: 10px;
+  }
+  .visit-copy > span {
+    display: none;
+  }
+  .visit-copy strong {
+    font-size: 11px;
+  }
+  .visit-copy small {
+    font-size: 7px;
+  }
+  .status-toast {
+    font-size: 10px;
+    bottom: 14px;
+    padding-left: 12px;
+    width: max-content;
+  }
+  .globe-fallback {
+    max-width: 265px;
+    width: 66%;
+  }
+}
