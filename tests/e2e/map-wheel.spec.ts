@@ -67,8 +67,13 @@ async function zoomAtPin(page: Page, map: Locator, reduced: boolean) {
   const [anchor, second] = before;
   if (!anchor) throw new Error("Expected a geographic anchor pin");
   await page.mouse.move(anchor.x, anchor.y);
-  await page.mouse.wheel(0, -120);
+  // Leaflet 1.9 divides pixel deltas by DPR on Linux Chrome and 3 * DPR on
+  // macOS. -120 therefore jumps two zoom levels on Linux, clipping the second
+  // pin out of SVG bounds. A -40 gesture exercises one real wheel-zoom step on
+  // both platforms, keeping both geographic anchors available for comparison.
+  await page.mouse.wheel(0, -40);
   if (!reduced) await expect(map.locator(".leaflet-map-pane")).toHaveClass(/leaflet-zoom-anim/);
+  await expect.poll(tileZoom).toBe(initialTileZoom + 1);
   await expect
     .poll(async () => {
       const after = await centers(map);
@@ -91,19 +96,27 @@ async function zoomAtPin(page: Page, map: Locator, reduced: boolean) {
   await expect(map.getByRole("link", { name: "OpenStreetMap" })).toBeVisible();
 }
 
-for (const [width, reduced] of [
-  [1440, false],
-  [375, true],
+for (const [platform, width, reduced] of [
+  ["MacIntel", 1440, false],
+  ["MacIntel", 375, true],
+  ["Linux x86_64", 1440, false],
+  ["Linux x86_64", 375, true],
 ] as const) {
-  test(`wheel zoom anchors geographic pins and keeps the draft unchanged at ${width}px`, async ({
+  test(`wheel zoom anchors geographic pins and keeps the draft unchanged at ${width}px (${platform})`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 1000 });
     await page.emulateMedia({ reducedMotion: reduced ? "reduce" : "no-preference" });
     await page.route("https://tile.openstreetmap.org/**", (route) => route.abort());
-    await page.addInitScript((trip) => {
-      localStorage.setItem("tastip.trip.v1", JSON.stringify(trip));
-    }, wheelTrip());
+    await page.addInitScript(
+      ({ trip, platform }) => {
+        // Leaflet reads navigator.platform at module initialization; exercise both
+        // native normalization branches regardless of the runner's operating system.
+        Object.defineProperty(navigator, "platform", { value: platform });
+        localStorage.setItem("tastip.trip.v1", JSON.stringify(trip));
+      },
+      { trip: wheelTrip(), platform },
+    );
     await page.goto("/studio");
     await page.getByRole("button", { name: "Day 1", exact: true }).click();
     await page.getByRole("button", { name: "Map this day", exact: true }).click();

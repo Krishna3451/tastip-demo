@@ -1,6 +1,10 @@
 import { type BrowserContext, expect, type Page, test } from "@playwright/test";
 import { DESTINATIONS, type Place } from "../../packages/domain/src";
+import { resetE2ERegistrationQuota } from "../support/disposable-e2e-store";
 import { E2E_ORIGIN } from "./environment";
+
+// Retries share a server: isolate only the synthetic registration quota, never production limits.
+test.beforeEach(() => resetE2ERegistrationQuota(E2E_ORIGIN));
 
 const remoteCollection = {
   id: "00000000-0000-4000-8000-000000000087",
@@ -102,6 +106,12 @@ test("a valid pending account draft survives malformed legacy caches and combine
     [remoteCollection.name, pendingCollection.name].sort(),
   );
   expect(posts).toHaveLength(1);
+  // The server commit can be observed before this tab receives and clears its pending copy.
+  await expect
+    .poll(() =>
+      page.evaluate((id) => localStorage.getItem(`tastip.reference.saved-draft:${id}`), account.id),
+    )
+    .toBeNull();
   const copies = await page.evaluate(
     (id) => ({
       places: localStorage.getItem(`tastip.reference.saved:${id}`),

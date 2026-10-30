@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { resetE2ERegistrationQuota } from "../support/disposable-e2e-store";
 import { E2E_ORIGIN } from "./environment";
+
+// Retries share a server: isolate only the synthetic registration quota, never production limits.
+test.beforeEach(() => resetE2ERegistrationQuota(E2E_ORIGIN));
 
 for (const width of [375, 1440]) {
   test(`account chat backups preserve divergent device histories and reject stale writes at ${width}px`, async ({

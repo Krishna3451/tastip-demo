@@ -1,7 +1,11 @@
 import { type BrowserContext, expect, type Page, test } from "@playwright/test";
 import type { SavedWorkspace } from "../../apps/web/src/features/planner/lib/saved-workspace";
 import { createDemoTrip, DEFAULT_BRIEF, DESTINATIONS, type Place } from "../../packages/domain/src";
+import { resetE2ERegistrationQuota } from "../support/disposable-e2e-store";
 import { E2E_ORIGIN } from "./environment";
+
+// Retries share a server: isolate only the synthetic registration quota, never production limits.
+test.beforeEach(() => resetE2ERegistrationQuota(E2E_ORIGIN));
 
 const collectionId = "00000000-0000-4000-8000-000000000093";
 const otherCollectionId = "00000000-0000-4000-8000-000000000094";

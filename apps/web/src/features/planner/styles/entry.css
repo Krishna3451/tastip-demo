@@ -474,3 +474,36 @@
     margin-top: 14px;
   }
 }
+
+/* Keep the primary action visible on compact desktop windows. */
+@media (min-width: 1000px) and (max-height: 800px) {
+  .entry-content.entry-content-compact {
+    padding-top: 16px;
+  }
+  .entry-content.entry-content-compact h1 {
+    font-size: 54px;
+    margin-top: 10px;
+  }
+  .entry-content-compact .entry-description {
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .entry-content-compact .entry-route-option {
+    margin-top: 8px;
+  }
+  .entry-content-compact .trip-brief {
+    margin-top: 10px;
+  }
+  .entry-content-compact .destination-field {
+    padding-block: 10px;
+  }
+  .entry-content-compact .brief-details {
+    padding-block: 8px;
+  }
+  .entry-content-compact .taste-field legend {
+    margin-bottom: 6px;
+  }
+  .entry-content-compact .create-trip {
+    margin-top: 12px;
+  }
+}

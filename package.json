@@ -13,8 +13,8 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "typecheck": "tsc --project tsconfig.json && turbo run typecheck",
-    "test": "bun test packages apps/web/src/server apps/web/src/features/planner/lib apps/web/src/lib",
+    "typecheck": "tsc --project tsconfig.json && tsc --project tests/support/tsconfig.json && turbo run typecheck",
+    "test": "bun test packages apps/web/src/server apps/web/src/features/planner/lib apps/web/src/lib tests/support",
     "lint": "biome check .",
     "format": "biome check --write .",
     "check": "bun run lint && bun run typecheck && bun run test",

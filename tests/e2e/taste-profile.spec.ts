@@ -1,7 +1,11 @@
 import { expect, test } from "@playwright/test";
 import { createDemoTrip, DEFAULT_BRIEF } from "../../packages/domain/src/fixtures";
 import type { TasteProfile } from "../../packages/domain/src/types";
+import { resetE2ERegistrationQuota } from "../support/disposable-e2e-store";
 import { E2E_ORIGIN } from "./environment";
+
+// Retries share a server: isolate only the synthetic registration quota, never production limits.
+test.beforeEach(() => resetE2ERegistrationQuota(E2E_ORIGIN));
 
 test("saved tastes survive another browser, remain private, can be reused and forgotten", async ({
   page,

@@ -3,6 +3,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { defineConfig } from "@playwright/test";
 import { E2E_ORIGIN, E2E_PORT } from "./tests/e2e/environment";
+import { prepareDisposableE2EStore } from "./tests/support/disposable-e2e-store";
+
+const dataDirectory = prepareDisposableE2EStore(E2E_ORIGIN);
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -25,8 +28,7 @@ export default defineConfig({
     url: E2E_ORIGIN,
     env: {
       TASTIP_E2E_SERVER: "1",
-      TASTIP_DATA_DIR:
-        process.env.TASTIP_E2E_DATA_DIR ?? join(tmpdir(), `tastip-browser-${randomUUID()}`),
+      TASTIP_DATA_DIR: dataDirectory,
     },
     reuseExistingServer: process.env.TASTIP_E2E_REUSE_SERVER === "1" && !process.env.CI,
     timeout: 120_000,

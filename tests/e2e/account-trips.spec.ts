@@ -1,5 +1,9 @@
 import { expect, type Page, test } from "@playwright/test";
+import { resetE2ERegistrationQuota } from "../support/disposable-e2e-store";
 import { E2E_ORIGIN } from "./environment";
+
+// Retries share a server: isolate only the synthetic registration quota, never production limits.
+test.beforeEach(() => resetE2ERegistrationQuota(E2E_ORIGIN));
 
 const password = "Synthetic-test-passphrase-729";
 
