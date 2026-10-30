@@ -27,6 +27,7 @@ export function TasteConnect({
   destination,
   configured,
   onCreate,
+  onReview,
   guided = false,
   initialSeeds = [],
   initialProfile,
@@ -38,6 +39,7 @@ export function TasteConnect({
   destination?: Destination;
   configured: boolean;
   onCreate: (places: Place[], warnings: string[], profile?: TasteProfile) => void;
+  onReview?: (profile: TasteProfile) => void;
   guided?: boolean;
   initialSeeds?: TasteSeed[];
   initialProfile?: TasteProfile;
@@ -101,6 +103,11 @@ export function TasteConnect({
     }
   }
   async function recommend() {
+    if (onReview) {
+      pending.current?.abort();
+      onReview({ seeds: selected, dayStyle, categories, rhythm, dietary, walking, lodging });
+      return;
+    }
     pending.current?.abort();
     const controller = new AbortController();
     pending.current = controller;

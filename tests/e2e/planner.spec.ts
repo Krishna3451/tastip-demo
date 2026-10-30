@@ -125,6 +125,9 @@ test("confirmed favorites feed ranked candidates into the accepted draft", async
     expect(route.request().postDataJSON()).toEqual({
       entityIds: ["00000000-0000-4000-8000-000000000001"],
       destinationId: "lisbon",
+      destination: expect.objectContaining({ id: "lisbon", name: "Lisbon" }),
+      categories: [],
+      take: 20,
     });
     await route.fulfill({
       json: { provider: "qloo", queryId: "contract-query", places, selected: places, warnings: [] },
@@ -136,6 +139,9 @@ test("confirmed favorites feed ranked candidates into the accepted draft", async
   await page.getByRole("button", { name: "Search favorites" }).click();
   await page.getByRole("button", { name: /Fixture Artist.*artist/ }).click();
   await page.getByRole("button", { name: "Build with my taste" }).click();
+  const review = page.getByRole("dialog", { name: "Review your personal trip", exact: true });
+  await review.getByRole("button", { name: "Find my places", exact: true }).click();
+  await review.getByRole("button", { name: "Create this trip", exact: true }).click();
   await page.getByRole("button", { name: "List", exact: true }).click();
   const rows = page.getByRole("region", { name: "Day itinerary" }).getByRole("button");
   await expect(rows).toHaveCount(3);

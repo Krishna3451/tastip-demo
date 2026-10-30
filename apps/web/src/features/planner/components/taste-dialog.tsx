@@ -18,6 +18,7 @@ export function TasteDialog({
   replacingDraft,
   onClose,
   onCreate,
+  onReview,
   account,
 }: {
   destinationId: string;
@@ -31,6 +32,7 @@ export function TasteDialog({
   replacingDraft: boolean;
   onClose: () => void;
   onCreate: (places: Place[], warnings: string[], profile?: TasteProfile) => void;
+  onReview?: (profile: TasteProfile) => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [reused, setReused] = useState<TasteProfile | undefined>();
@@ -92,6 +94,7 @@ export function TasteDialog({
         excludedIds={excludedIds}
         replacingDraft={replacingDraft}
         onCreate={onCreate}
+        onReview={onReview}
       />
     </dialog>
   );
