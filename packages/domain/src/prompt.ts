@@ -1,13 +1,21 @@
 /** A small transparent parser for the route brief, not an LLM or an intent guarantee. */
 export function parseRoutePrompt(input: string) {
   const text = input.trim();
-  const duration = /(?:for\s+)?(\d+)\s*days?\b/i.exec(text);
+  const duration = /\b(\d+)\s*(?:[-–]\s*)?days?\b/i.exec(text);
   const days = duration ? Number(duration[1]) : null;
   const travelers = /(?:with|for)\s+(\d+)\s*(?:people|travelers|travellers|adults)\b/i.exec(text);
-  const from = /^\s*(?:plan\s+)?(?:a\s+trip\s+)?from\s+(.+?)\s+to\s+/i.exec(text);
+  // Duration-first wording still needs an explicit location marker. Do not turn
+  // “4 days of art and design” into city searches or infer interests as cities.
+  const leadingDuration = /^(?:plan\s+)?(?:a\s+)?\d+\s*(?:[-–]\s*)?days?\b\s*/i.exec(text);
+  const routeText = leadingDuration
+    ? text.slice(leadingDuration[0].length).replace(/^trip\s+/i, "")
+    : text;
+  const from = /^\s*(?:plan\s+)?(?:a\s+trip\s+)?from\s+(.+?)\s+to\s+/i.exec(routeText);
   let route = from
-    ? text.slice(from[0].length)
-    : text.replace(/^(?:plan\s+)?(?:a\s+)?(?:trip\s+)?(?:to|in|visit)\s+/i, "");
+    ? routeText.slice(from[0].length)
+    : leadingDuration
+      ? (/^(?:to|in|visit|visiting)\s+(.+)$/i.exec(routeText)?.[1] ?? "")
+      : routeText.replace(/^(?:plan\s+)?(?:a\s+)?(?:trip\s+)?(?:to|in|visit)\s+/i, "");
   route = route
     .replace(/\s+(?:for|with|starting|from\s+\d)\s+.*$/i, "")
     .replace(/\s+\d+\s*days?\b.*$/i, "");
