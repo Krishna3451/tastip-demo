@@ -91,12 +91,18 @@ test("route prompt, taste rhythm, second-city recommendations and ideas form one
   await studio.getByRole("button", { name: "Vegetarian", exact: true }).click();
   await studio.getByRole("button", { name: "Continue", exact: true }).click();
   await studio.getByRole("button", { name: "Build with my taste" }).click();
+  const generation = page.getByRole("dialog", { name: "Review your personal trip", exact: true });
+  await generation.getByRole("button", { name: "Find my places", exact: true }).click();
+  await generation.getByRole("button", { name: "Create this trip", exact: true }).click();
   await page.getByRole("button", { name: "List", exact: true }).click();
   await expect(page.getByRole("button", { name: /lisbon contract place 1/ })).toContainText(
     "11:00",
   );
   await page.getByRole("button", { name: "Day 4", exact: true }).click();
-  await expect(page.getByText("No visits scheduled for this day.")).toBeVisible();
+  await expect(page.getByRole("button", { name: /porto contract place 1/ })).toContainText("15:00");
+  // Both cities are populated by the shared initial review. Explicit discovery can refill an opened slot.
+  await page.getByRole("button", { name: /porto contract place 1/ }).click();
+  await page.getByRole("button", { name: "Remove from day", exact: true }).click();
   await page.getByRole("button", { name: "Find places in Porto", exact: true }).click();
   await expect(page.getByText(/real candidates · .*new draft visits/)).toBeVisible();
   await page.getByRole("button", { name: /Add .* visits & keep ideas/ }).click();
@@ -128,7 +134,7 @@ test("route prompt, taste rhythm, second-city recommendations and ideas form one
   await expect(
     page.getByRole("heading", { name: "porto lodging contract fixture", exact: true }),
   ).toBeVisible();
-  expect(seen).toEqual(["lisbon", "porto", "porto"]);
+  expect(seen).toEqual(["lisbon", "porto", "porto", "porto"]);
 });
 
 test("reviewed local chat command edits actual draft and stale proposals cannot apply", async ({

@@ -23,7 +23,7 @@ test("guided taste choices and feedback drive a fresh ranked draft", async ({ pa
     const body = route.request().postDataJSON();
     expect(body.entityIds).toEqual(["00000000-0000-4000-8000-000000000001"]);
     expect(body.categories).toEqual(requestCount === 0 ? ["culture", "shop"] : []);
-    expect(body.excludedIds).toEqual(requestCount === 0 ? [] : ["place-1"]);
+    expect(body.excludedIds).toEqual(requestCount === 0 ? undefined : ["place-1"]);
     const places = [1, 2, 3, 4]
       .filter((rank) => requestCount === 0 || rank !== 1)
       .map((rank) => ({
@@ -53,6 +53,9 @@ test("guided taste choices and feedback drive a fresh ranked draft", async ({ pa
   await studio.getByRole("button", { name: "Continue", exact: true }).click();
   await studio.getByRole("button", { name: "Build with my taste" }).click();
   await expect(studio).not.toBeVisible();
+  const review = page.getByRole("dialog", { name: "Review your personal trip", exact: true });
+  await review.getByRole("button", { name: "Find my places", exact: true }).click();
+  await review.getByRole("button", { name: "Create this trip", exact: true }).click();
   await page.getByRole("button", { name: "List", exact: true }).click();
   await page.getByRole("button", { name: /Studio fixture 1/ }).click();
   await expect(page.getByText(/Favorites saved with this trip: Fixture Film/)).toBeVisible();

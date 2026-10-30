@@ -5,6 +5,7 @@ import {
   DESTINATIONS,
   feedbackTasteSignals,
   MAX_TRIP_DAYS,
+  type TasteProfile,
   type TasteSeed,
   type Trip,
   type TripBrief,
@@ -62,10 +63,16 @@ import { TripLibrary } from "./components/trip-library";
 import { TripName } from "./components/trip-name";
 import { TripPrompt } from "./components/trip-prompt";
 import { VisitDialog } from "./components/visit-dialog";
+import { entryTripReview } from "./lib/entry-trip-review";
 import { tripSourceLabel } from "./lib/place-labels";
 import { useMapsConfiguration } from "./lib/use-maps-configuration";
 import { useAccount } from "./use-account";
 import { usePlanner } from "./use-planner";
+
+const TripGenerationReview = dynamic(
+  () => import("../reference/trip-generation-review").then((module) => module.TripGenerationReview),
+  { ssr: false, loading: () => <p role="status">Opening your trip review…</p> },
+);
 
 const ConversationPlanning = dynamic(
   () => import("../reference/conversation-planning").then((module) => module.ConversationPlanning),
@@ -211,6 +218,14 @@ function PlannerWorkspace({ identity }: { identity: ReturnType<typeof useAccount
   const [entryRoute, setEntryRoute] = useState<TripRoute | undefined>(undefined);
   const [chatOpen, setChatOpen] = useState(false);
   const [tasteOpen, setTasteOpen] = useState(false);
+  const [entryPlanning, setEntryPlanning] = useState<{
+    id: string;
+    scope: string;
+    tripId: string | null;
+    version: number | null;
+    brief: TripBrief;
+    route: TripRoute;
+  } | null>(null);
   const recommendationAction = useRef<{ find: () => void }>(null);
   const selectionTrigger = useRef<HTMLElement | null>(null);
   // biome-ignore lint/correctness/useExhaustiveDependencies: A session change closes overlays belonging to the previous private workspace.
@@ -218,6 +233,7 @@ function PlannerWorkspace({ identity }: { identity: ReturnType<typeof useAccount
     setAccountOpen(false);
     setSelectedStopId(null);
     setTasteOpen(false);
+    setEntryPlanning(null);
     setChatOpen(false);
     setCompanionOpen(false);
     setSavedOpen(false);
@@ -440,6 +456,23 @@ function PlannerWorkspace({ identity }: { identity: ReturnType<typeof useAccount
       ...(key === "origin" ? { originDestination: undefined } : {}),
     }));
     if (key === "days" || key === "destinationId") setEntryRoute(undefined);
+  }
+  function reviewEntryTaste(profile: TasteProfile) {
+    if (!identity.ready || !hydrated || trip) return;
+    try {
+      const reviewed = entryTripReview(brief, profile, entryRoute);
+      setEntryPlanning({
+        ...reviewed,
+        id: crypto.randomUUID(),
+        scope: libraryKey,
+        tripId: null,
+        version: null,
+      });
+      setBrief(reviewed.brief);
+      setTasteOpen(false);
+    } catch (cause) {
+      setNotice(cause instanceof Error ? cause.message : "Review your trip details first.");
+    }
   }
   function start(mode: "demo" | "empty" = "demo") {
     if (!create(entryRoute, mode)) return;
@@ -876,6 +909,7 @@ function PlannerWorkspace({ identity }: { identity: ReturnType<typeof useAccount
                   destinationId={brief.destinationId}
                   destination={destination}
                   configured={qlooConfigured}
+                  onReview={reviewEntryTaste}
                   onCreate={(places, warnings, profile) => {
                     if (!createFromPlaces(places, warnings, profile, entryRoute)) return;
                     requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "instant" }));
@@ -1362,6 +1396,31 @@ function PlannerWorkspace({ identity }: { identity: ReturnType<typeof useAccount
           }}
         />
       )}
+      {identity.ready && entryPlanning?.scope === libraryKey && (
+        <div className="planner-conversation-planning">
+          <TripGenerationReview
+            key={entryPlanning.id}
+            brief={entryPlanning.brief}
+            route={entryPlanning.route}
+            configured={qlooConfigured}
+            currentTrip={trip}
+            previous={entryPlanning}
+            onAccept={(prepared) => {
+              if (!identity.ready || entryPlanning.scope !== libraryKey) return false;
+              if (!planner.acceptPreparedTrip(prepared, entryPlanning)) return false;
+              setEntryPlanning(null);
+              setDayId(prepared.days[0]?.id ?? "day-1");
+              setSelectedStopId(null);
+              setDayFocused(false);
+              setView("journey");
+              requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "instant" }));
+              return true;
+            }}
+            onBack={() => setEntryPlanning(null)}
+            onClose={() => setEntryPlanning(null)}
+          />
+        </div>
+      )}
       {hydrated && tasteOpen && (
         <TasteDialog
           account={identity.account}
@@ -1373,6 +1432,7 @@ function PlannerWorkspace({ identity }: { identity: ReturnType<typeof useAccount
           initialProfile={trip?.brief.tasteProfile ?? brief.tasteProfile}
           excludedIds={feedback.excludedIds}
           replacingDraft={Boolean(trip)}
+          onReview={!trip ? reviewEntryTaste : undefined}
           onClose={() => setTasteOpen(false)}
           onCreate={(places, warnings, profile) => {
             if (!createFromPlaces(places, warnings, profile, entryRoute)) return;
